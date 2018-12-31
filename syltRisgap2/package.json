@@ -1,0 +1,9 @@
+{
+  "name": "sylt-risgap2",
+  "version": "0.0.0",
+  "description": "syltRisgap2",
+  "main": "server.js",
+  "author": {
+    "name": "thors"
+  }
+}
