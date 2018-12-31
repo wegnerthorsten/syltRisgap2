@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+  <loc>http://www.sylt-risgap2.de/dist/</loc>
+  <lastmod>2017-03-20T09:44:45+00:00</lastmod>
+    <image:image>
+      <!---Wohnung 1 -->
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w1_wohnzimmer_1_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 1 Wohnzimmer</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w1_wohnzimmer_1_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 1 Wohnzimmer</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w1_kueche_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 1 Kueche</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w1_schlafzimmer_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 1 Schlafzimmer</image:caption>
+
+      <!---Wohnung 2 -->
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w2_wohnzimmer_2_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 2 Wohnzimmer</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w2_wohnzimmer_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 2 Wohnzimmer</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w2_kueche_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 2 Kueche</image:caption>
+
+      <!---Wohnung 3 -->
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w3_wohnzimmer_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 3 Wohnzimmer</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w3_kueche_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 3 Kueche</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w3_wohnzimmer_2_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 2 Wohnzimmer</image:caption>
+
+      <!---Wohnung 4 -->
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w4_wohnzimmer_2_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 4 Wohnzimmer</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w4_kueche_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 4 Kueche</image:caption>
+      <image:loc>http://www.sylt-risgap2.de/sylt-risgap2.de/dist/img/rooms/w4_bad_preview.jpg</image:loc>
+      <image:caption>Vorschau Wohnung 4 Wohnzimmer</image:caption>
+
+    </image:image>
+</url>
+</urlset>

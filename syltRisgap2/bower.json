@@ -1,0 +1,20 @@
+{
+  "name": "risgap2",
+  "description": "new Website from Risgap Hüs",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "fancybox": "^2.1.6",
+    "flexslider": "^2.6.3",
+    "bootstrapvalidator": "^0.5.3",
+    "bootstrap-datetimepicker-sass": "^3.0.4",
+    "bootstrap-datetimepicker": "^0.0.11",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47"
+  },
+  "resolutions": {
+    "bootstrap": ">= 3.0.0"
+  }
+}
