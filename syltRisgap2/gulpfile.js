@@ -20,6 +20,21 @@ var plumber = require('gulp-plumber');
 var dirs = pkg['sr2-config'].directories;
 var cleanCSS = require('gulp-clean-css');
 
+// **** Webserver config ****
+var user = 'rigap2@sylt-risgap2.de';
+var password = 'X9sylt-risgap2.deX9';
+var host = 'ftp.sylt-risgap2.de';
+
+
+/*###### Introduction #######*/
+/* Die Ordner Struktur besteht aus src, dev und dist. Die src ist der Quelle Ordner zum local entwickeln, 
+ * Initialisieren der Application, führe alle copy-... src -> dev aus, erstellt die dev Ordner Struktur, kopiert  alle files und Bilder in den dev    
+ * Bower, kopiert alle benötigen Files in das vendor Verzeichnis
+ * Copy dev -> dist erstellt die dev ordner Strukturen und kopiert alle files aus dem dev -> dist
+ * Copy bower components, kopiert alle libraries,fonts etc. ins vendor Verzeichnis
+ * Watch-srcToDev starten, wenn eines der Files bearbeitet worden sind, kopiert watch das File von src -> dev 
+ */
+
 // pipe a glob stream into this and receive a gulp file stream
 var gulpSrc = function (opts) {
     var paths = es.through();
@@ -52,25 +67,38 @@ var myReporter = map(function (file, cb) {
 
 // kopiert alle bower componenten in den vendor ordner
 // bower install l�dt alle componenten aus der bower.json 
-gulp.task('bower', function () {
+gulp.task('copy:bower_components', function () {
     return gulp.src([
         'bower_components/flexslider/flexslider.css',
         'bower_components/flexslider/jquery.flexslider-min.js',
-        'bower_components/flexslider/fonts/**',
+        'bower_components/bootstrap/fonts/bootstrap/**',
         'bower_components/fancybox/source/jquery.fancybox.css',
-        'bower_components/fancybox/source/jquery.fancybox.css',
-        'bower_components/bootstrap/dist/css/bootstrap.css',
+        'bower_components/fancybox/source/jquery.fancybox.js',
+        'bower_components/fancybox/source/fancybox_overlay.png',
+        'bower_components/fancybox/source/fancybox_sprite@2x.png',
+        'bower_components/fancybox/source/fancybox_loading@2x.gif',
+        'bower_components/fancybox/source/blank.gif ',
+        '!bower_components/bootstrap/dist/css/bootstrap.css',
         '!bower_components/bootstrap/assets/**',
         '!bower_components/eonasdan-bootstrap-datetimepicker/docs/**',
         '!bower_components/jquery/external/**',
         'bower_components/**/*min.css',
-        'bower_components/**/*min.js'
+        'bower_components/**/*min.js',
     ],
     {
         base: 'bower_components/'
     })
         .pipe(gulp.dest(dirs.localpath + '/vendor/'));
 });
+
+gulp.task('copy:bower_components_fonts', function () {
+    return gulp.src([
+        'bower_components/flexslider/fonts/**',
+        'bower_components/bootstrap-sass/assets/fonts/bootstrap/**'])
+        .pipe(rename({ dirname: '' }))
+        .pipe(gulp.dest(dirs.localpath + '/vendor/fonts'));
+});
+
 
 // #### COPY FILES #####
 gulp.task('copy:img', function () {
@@ -110,33 +138,33 @@ gulp.task('copy:formmailer.php', function () {
 
 /******** LIVE LOCAL *********/
 /* tasks werden nur von livelocal verwendet */
- gulp.task('copy:scripts-livereload', function() {
+gulp.task('livereload:scripts', function() {
      return gulp.src(dirs.src + '/js/*.js')
          .pipe(gulp.dest(dirs.dev + '/js'))
            .pipe(livereload());
  });
 
-gulp.task('copy:styles-livereload', function () {
+gulp.task('livereload:styles', function () {
     return gulp.src(dirs.src + '/css/*.css')
         .pipe(gulp.dest(dirs.dev + '/css'))
         .pipe(livereload());
 });
 
-gulp.task('copy:index.html-livereload', function () {
+gulp.task('livereload:index.html', function () {
     return gulp.src(
         [dirs.src + '/*.html'])
         .pipe(gulp.dest(dirs.dev))
         .pipe(livereload());
 });
 
-gulp.task('copy:sitemap-livereload', function () {
+gulp.task('livereload:sitemap', function () {
     return gulp.src(
         dirs.src + '/*.xml')
         .pipe(gulp.dest(dirs.dev))
         .pipe(livereload());
 });
 
-gulp.task('copy:formmailer-livereload', function () {
+gulp.task('livereload:formmailer', function () {
     return gulp.src(
         dirs.src + '/*.php')
         .pipe(gulp.dest(dirs.dev))
@@ -148,11 +176,11 @@ gulp.task('watch-srcToDev', function () {
     // Create LiveReload server
     livereload.listen();
 
-    gulp.watch(dirs.src + '/css/*.css', ['copy:styles-livereload']);
-    gulp.watch(dirs.src + '/*.xml', ['copy:sitemap-livereload']);
-    gulp.watch(dirs.src + '/*.php', ['copy:formmailer-livereload']);
-    gulp.watch(dirs.src + '/*.html', ['copy:index.html-livereload']);
-    gulp.watch(dirs.src + '/js/*.js', ['copy:scripts-livereload']);
+    gulp.watch(dirs.src + '/css/*.css', ['livereload:styles']);
+    gulp.watch(dirs.src + '/*.xml', ['livereload:sitemap']);
+    gulp.watch(dirs.src + '/*.php', ['livereload:formmailer']);
+    gulp.watch(dirs.src + '/*.html', ['livereload:index.html']);
+    gulp.watch(dirs.src + '/js/*.js', ['livereload:scripts']);
     console.log(dirs.src + '/*.php');
 
     // Watch any files in dist/, reload on change
@@ -162,11 +190,7 @@ gulp.task('watch-srcToDev', function () {
 /******** END LIVE LOCAL *********/
 
 /******* FTP UPLOAD *******/
-// l�dt das gesamte Projekt von dist to server dist
-var user = 'rigap2@sylt-risgap2.de';
-var password = 'X9sylt-risgap2.deX9'
-var host = 'ftp.sylt-risgap2.de';
-
+// lädt die dist auf dem Server dist Ordner
 gulp.task('upload', function () {
 
     var conn = ftp.create({
@@ -178,7 +202,7 @@ gulp.task('upload', function () {
     });
 
     var globs = [
-        'dist/**', // liest den string mit in den Pfad und kopiert die Dateien in dist/**
+        'dev/**', // liest den string mit in den Pfad und kopiert die Dateien in dist/**
     ];
 
     // using base = '.' will transfer everything to /public_html correctly
@@ -207,11 +231,8 @@ gulp.task('default', ['clean'], function () {
 /****** TEST FTP UPLOAD *****/
 
 /*** FTP Configuration **/
-var user = 'rigap2@sylt-risgap2.de';
-var password = 'X9sylt-risgap2.deX9'
-var host = 'ftp.sylt-risgap2.de';
 var port = 21;
-var localFilesGlob = ['src/**'];
+var localFilesGlob = ['dev/**'];
 var remoteFolder = '/dev'
 
 
@@ -259,8 +280,8 @@ gulp.task('ftp-deploy-watch', function () {
             console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
 
             return gulp.src([event.path], { base: '.', buffer: false })
-                //.pipe(conn.newer(remoteFolder)) // only upload newer files
-                .pipe(conn.dest('././'));
+                .pipe(conn.newer(remoteFolder)) // only upload newer files
+                .pipe(conn.dest());
         });
 });
 
