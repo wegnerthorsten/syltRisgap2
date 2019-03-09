@@ -15,31 +15,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$headers = "From:" . $emailFrom . "\r\n"; 
 	$headers .= "X-Priority: 1\r\n";
 	$headers .= "Content-Type: text/html; charset=UTF-8"; 
-	  
-	ValidateForm($firstName, $name, $emailFrom, $mailTo); 
+	 
+	ValidateForm($firstName, $name, $emailFrom, $mailTo, $errorMsg, $error); 
 	  
 	if($error == false)
 	{
-		if($_POST['form'] == "Inquiry")
+		if($_POST['form'] == "inquiry")
 		{
-			$msg = SetInquiryForm($_POST);
-			$subject = 'Frage zur Ferienwohnung';
-
+			$msg = SetInquiryForm($_POST, $firstName, $name,$emailFrom, $phone);
+			$subject = 'Anfrage Ferienwohnung';
 		}
 		elseif($_POST["form"] == "contact") {
 			$tmpMsg  =	test_input($_POST["message"]);
-			ValidateContactForm($tmpMsg);
+			ValidateContactForm($tmpMsg, $errorMsg, $error);
 			if($error == FALSE)
 			{
+
 				$msg = $_POST["message"];
 				$subject = 'Frage zur Ferienwohnung';
-
 			}
 		}
 	}
-
 	if($error == false)
 	{  
+		var_dump($msg);
 		// SEND EMAIL
 		$mailSent = mail($to,$subject, $msg, $headers);
 	
@@ -54,12 +53,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$errorMsg['failed'] =  'Ihre Anfrage konnte nicht versendet werden';
 		}
 	}
+	
 
 	// msg als json zurück geben.
 	echo json_encode($errorMsg);
 }
  
-function SetInquiryForm(array $request){
+ 
+function SetInquiryForm(&$request, &$firstName, &$name, &$emailFrom, &$phone){
+
+
 		$fromDate = test_input($_POST["fromDate"]);;
         $thruDate = test_input($_POST["thruDate"]);
         $roomNr = test_input($_POST["roomNr"]);
@@ -69,19 +72,21 @@ function SetInquiryForm(array $request){
             . 'Personen ' . $personCounter . "<br>"
             . 'Von ' . $fromDate . "<br>"
             . 'Bis ' . $thruDate . "<br>"
-            . 'Name ' . $inquirerName . "<br>"
-            . 'Vorname ' . $inquirerFirstName . "<br>"
-            . 'Emailadresse ' . $inquirerEmailAddress . "<br>"
-            . 'Telefon ' . $inquirerPhone . "<br>";
+            . 'Name ' . $name . "<br>"
+            . 'Vorname ' . $firstName . "<br>"
+            . 'Emailadresse ' . $emailFrom . "<br>"
+            . 'Telefon ' . $phone . "<br>";
+			var_dump($message);
 
 		return $message;
 }
 
-function ValidateForm(string $firstName, string $name, string $phone, string $emailFrom){
+ 
+function ValidateForm(&$firstName, &$name, &$phone, &$emailFrom, &$errorMsg,&$error){
 
 	if(empty($firstName))
 	{
-		$errorMsg['inquirerEmailAddress'] = "Bitte füllen Sie das Feld aus";
+		$errorMsg['inquirerFirstname'] = "Bitte füllen Sie das Feld aus";
 	}
 	elseif(empty($name))
 	{
@@ -103,22 +108,23 @@ function ValidateForm(string $firstName, string $name, string $phone, string $em
 		}
 	}
 	
-	if(isset($errMsg) && count($errorMsg) > 0)
+	if(isset($errorMsg) && count($errorMsg) > 0)
 	{
 		$error = true;
 	}
 }
 
-function ValidateContactForm(string $msg){
-	$words = explode(" ", $msg);
+function ValidateContactForm($msg, &$errorMsg, &$error){
 
+	$words = explode(" ", $msg);
 	if(Count($words) < 2 || strlen($words[0]) < 6 || strlen($words[1]) < 2)
 	{
-		$errorMsg['MessageIncorrect'] =  'Die Nachricht muss aus mehreren Wörter bestehen.';
+		$errorMsg['MessageIncorrect'] =  'Die Nachricht ist zu  kurz.';
 		$error = true;
 	}
-}
 
+	return "sf";
+}
 // ======= HELPERS ===========
 
 // Function for filtering input values.

@@ -28,7 +28,7 @@ var host = 'ftp.sylt-risgap2.de';
 /*** FTP Configuration **/
 var port = 21;
 var localFilesGlob = ['dev/**'];
-var remoteFolder = '/dev';
+var remoteFolder = '';
 
 /*###### Introduction #######*/
 /* Die Ordner Struktur besteht aus src, dev und dist. Die src ist der Quelle Ordner zum local entwickeln, 
