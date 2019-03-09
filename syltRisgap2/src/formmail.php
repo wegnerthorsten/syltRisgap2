@@ -14,8 +14,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$subject = 'Frage zur Ferienwohnung';
 	$headers = "From:" . $emailFrom . "\r\n"; 
 	$headers .= "X-Priority: 1\r\n";
-	$headers .= "Content-Type: text/html; charset=UTF-8";
-	 
+	$headers .= "Content-Type: text/html; charset=UTF-8"; 
+	  
 	ValidateForm($firstName, $name, $emailFrom, $mailTo); 
 	  
 	if($error == false)
@@ -118,7 +118,6 @@ function ValidateContactForm(string $msg){
 		$error = true;
 	}
 }
-
 
 // ======= HELPERS ===========
 

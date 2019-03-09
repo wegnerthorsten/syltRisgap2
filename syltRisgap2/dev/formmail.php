@@ -18,12 +18,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	  
 	ValidateForm($firstName, $name, $emailFrom, $mailTo); 
 	  
-	if($error == false) 
+	if($error == false)
 	{
 		if($_POST['form'] == "Inquiry")
 		{
 			$msg = SetInquiryForm($_POST);
-			$subject = 'Frage zur Ferienwohnung'; 
+			$subject = 'Frage zur Ferienwohnung';
 
 		}
 		elseif($_POST["form"] == "contact") {
@@ -118,7 +118,6 @@ function ValidateContactForm(string $msg){
 		$error = true;
 	}
 }
-
 
 // ======= HELPERS ===========
 

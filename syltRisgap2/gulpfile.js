@@ -25,6 +25,10 @@ var user = 'rigap2@sylt-risgap2.de';
 var password = 'X9sylt-risgap2.deX9';
 var host = 'ftp.sylt-risgap2.de';
 
+/*** FTP Configuration **/
+var port = 21;
+var localFilesGlob = ['dev/**'];
+var remoteFolder = '/dev';
 
 /*###### Introduction #######*/
 /* Die Ordner Struktur besteht aus src, dev und dist. Die src ist der Quelle Ordner zum local entwickeln, 
@@ -99,7 +103,6 @@ gulp.task('copy:bower_components_fonts', function () {
         .pipe(gulp.dest(dirs.localpath + '/vendor/fonts'));
 });
 
-
 // #### COPY FILES #####
 gulp.task('copy:img', function () {
     return gulp.src(dirs.src + '/img/**/*')
@@ -133,10 +136,11 @@ gulp.task('copy:sitemap.xml', function () {
 
 gulp.task('copy:formmailer.php', function () {
     return gulp.src(dirs.src + '/formmailer.php')
-        .pipe(gulp.dest(dirs.dev))
+        .pipe(gulp.dest(dirs.dev));
 });
 
 /******** LIVE LOCAL *********/
+
 /* tasks werden nur von livelocal verwendet */
 gulp.task('livereload:scripts', function() {
      return gulp.src(dirs.src + '/js/*.js')
@@ -171,7 +175,17 @@ gulp.task('livereload:formmailer', function () {
         .pipe(livereload());
 });
 
-gulp.task('watch-srcToDev', function () {
+
+/******** END LIVE LOCAL *********/
+
+/******** Watch update files ********/
+gulp.task('watch:start-environment-dev', function () {
+    gulp.start(
+        'watch:srcToDev',
+        'watch:ftp-deploy-dev');
+});
+
+gulp.task('watch:srcToDev', function () {
 
     // Create LiveReload server
     livereload.listen();
@@ -182,27 +196,52 @@ gulp.task('watch-srcToDev', function () {
     gulp.watch(dirs.src + '/*.html', ['livereload:index.html']);
     gulp.watch(dirs.src + '/js/*.js', ['livereload:scripts']);
     console.log(dirs.src + '/*.php');
-
-    // Watch any files in dist/, reload on change
-  //  gulp.watch(['src/**']).on('change', livereload.changed);
 });
 
-/******** END LIVE LOCAL *********/
+/**
+ * Watch deploy task.
+ * Watches the local copy for changes and copies the new files to the server whenever an update is detected
+ *
+ * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy-watch`
+ */
+gulp.task('watch:ftp-deploy-dev', function () {
+
+    var conn = getFtpConnection();
+
+    gulp.watch(localFilesGlob)
+        .on('change', function (event) {
+            console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
+
+            return gulp
+                .src([event.path], { base: '.', buffer: false })
+                .pipe(conn.newer(remoteFolder)) // only upload newer files
+                .pipe(conn.dest(remoteFolder));
+        });
+});
+
+
+
+// helper function to build an FTP connection based on our configuration
+function getFtpConnection() {
+    return ftp.create({
+        host: host,
+        port: port,
+        user: user,
+        password: password,
+        parallel: 5,
+        log: gutil.log
+    });
+}
+
 
 /******* FTP UPLOAD *******/
 // lädt die dist auf dem Server dist Ordner
 gulp.task('upload', function () {
 
-    var conn = ftp.create({
-        host: host,
-        user: user,
-        password: password,
-        parallel: 10,
-        log: gutil.log
-    });
+    var conn = getFtpConnection();
 
     var globs = [
-        'dev/**', // liest den string mit in den Pfad und kopiert die Dateien in dist/**
+        'dev/**' // liest den string mit in den Pfad und kopiert die Dateien in dist/**
     ];
 
     // using base = '.' will transfer everything to /public_html correctly
@@ -211,6 +250,19 @@ gulp.task('upload', function () {
     return gulp.src(globs, { base: '.', buffer: false })
       //  .pipe(conn.newer('/src/')) // only upload newer files
         .pipe(conn.dest('')); // Zielordner auf dem remote Server /dev/**
+});
+
+//*
+// * Deploy task.
+// * Copies the new files to the server
+// * Von local dev to server dev
+gulp.task('ftp-deploy', function () {
+
+    var conn = getFtpConnection();
+
+    return gulp.src(localFilesGlob, { base: '.', buffer: false })
+         .pipe( conn.newer( remoteFolder ) ) // only upload newer files
+        .pipe(conn.dest(remoteFolder));
 });
 
 /*** DEFAULT TASK ***/
@@ -225,63 +277,6 @@ gulp.task('default', ['clean'], function () {
         'copy:formmailer.php',
         'copy:sitemap.xml',
         'watch');
-});
-
-
-/****** TEST FTP UPLOAD *****/
-
-/*** FTP Configuration **/
-var port = 21;
-var localFilesGlob = ['dev/**'];
-var remoteFolder = '/dev';
-
-// helper function to build an FTP connection based on our configuration
-function getFtpConnection() {
-    return ftp.create({
-        host: host,
-        port: port,
-        user: user,
-        password: password,
-        parallel: 5,
-        log: gutil.log
-    });
-}
-
-//*
-// * Deploy task.
-// * Copies the new files to the server
-// * Von local dev to server dev
-// *
-// * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy`
-
- gulp.task('ftp-deploy', function() {
-
-    var conn = getFtpConnection();
-
-    return gulp.src(localFilesGlob, { base: '.', buffer: false })
-       // .pipe( conn.newer( remoteFolder ) ) // only upload newer files
-        .pipe( conn.dest( remoteFolder ) );
-});
- 
-
-/**
- * Watch deploy task.
- * Watches the local copy for changes and copies the new files to the server whenever an update is detected
- *
- * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy-watch`
- */
-gulp.task('watch-ftp-deploy-dev', function () {
-
-    var conn = getFtpConnection(); 
-
-    gulp.watch(localFilesGlob)
-        .on('change', function (event) {
-            console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
-           
-            return gulp.src([event.path], { base: '.', buffer: false })
-                .pipe(conn.newer(remoteFolder)) // only upload newer files
-                .pipe(conn.dest());
-        });
 });
 
 
