@@ -233,8 +233,7 @@ gulp.task('default', ['clean'], function () {
 /*** FTP Configuration **/
 var port = 21;
 var localFilesGlob = ['dev/**'];
-var remoteFolder = '/dev'
-
+var remoteFolder = '/dev';
 
 // helper function to build an FTP connection based on our configuration
 function getFtpConnection() {
@@ -271,14 +270,14 @@ function getFtpConnection() {
  *
  * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy-watch`
  */
-gulp.task('ftp-deploy-watch', function () {
+gulp.task('watch-ftp-deploy-dev', function () {
 
-    var conn = getFtpConnection();
+    var conn = getFtpConnection(); 
 
     gulp.watch(localFilesGlob)
         .on('change', function (event) {
             console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
-
+           
             return gulp.src([event.path], { base: '.', buffer: false })
                 .pipe(conn.newer(remoteFolder)) // only upload newer files
                 .pipe(conn.dest());

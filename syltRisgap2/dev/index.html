@@ -788,7 +788,19 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="icon-user"></i></span>
-                                            <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="commentatorName" placeholder="Name ..." required>
+                                            <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="hidden" name="form" value="contact">
+                                <div class="col-xs-12 col-sm-offset-1 col-sm-5">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                                            <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Nachname ..." required>
                                         </div>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -799,7 +811,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i> </span>
-                                            <input type="email" data-error="Bitte füllen Sie das Feld aus" name="commentatorEmailAddress" class="form-control col-sm-2" placeholder="Email ..." required>
+                                            <input type="email" data-error="Bitte füllen Sie das Feld aus" name="email" class="form-control col-sm-2" placeholder="Email ..." required>
                                         </div>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -810,7 +822,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                            <input type="number" class="form-control" name="commentatorPhone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ..." required>
+                                            <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ..." required>
                                         </div>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -818,11 +830,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-12 col-sm-offset-1 col-sm-5">
-                                    <textarea class="commentatorText form-control" name="commentatorText" rows="4"></textarea>
+                                    <textarea class="commentatorText form-control" name="message" rows="4"></textarea>
                                 </div>
                             </div>
                             <div class="row col-sm-offset-1">
-                                <button type="submit" class="btn btn-danger col-xs-12 col-sm-5" name="commentForm">Senden</button>
+                                <button type="submit" class="btn btn-danger col-xs-12 col-sm-5" name="contactForm">Senden</button>
                             </div>
                             <div class="row col-sm-offset-1">
                                 <div class="sendComment-success col-xs-12 col-sm-5"></div>

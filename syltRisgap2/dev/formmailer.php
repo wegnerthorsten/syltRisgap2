@@ -10,4 +10,4 @@ if ($_POST["access"] == "secret") {
   mail($recipient, $_POST["subject"], $fmtMail);
 }
 echo $fmtResponse;
-?>
+?> 
