@@ -69,9 +69,9 @@
             <div class="container main-content text-center">
                 <div class="row">
                     <h1 class="text-center col-sm-12">Buchen Sie hier Ihren Urlaub auf Sylt in top Lage <br>  Ferienwohnungen im Zentrum von Wenningstedt </h1>
-                    <form method="post" action="formMailer.php" name="inquiryForm" id="inquiryForm" role="form" class="form-inline col-sm-offset-4 col-sm-8" data-toggle="validator">
+                    <form method="post" action="formmail.php" name="inquiryForm" id="inquiryForm" role="form" class="form-inline col-sm-offset-4 col-sm-8" data-toggle="validator">
                         <div class="row">
-                            <input name="inquiryForm" type="hidden" value="commentForm" />
+                            <input name="form" type="hidden" value="inquiry" />
                             <div class="col-xs-12 col-sm-5">
                                 <div class="form-group">
                                     <div class='input-group date' id='from'>
@@ -783,7 +783,7 @@
                         </div>
                         <form class="col-xs-12 col-sm-8" name="contactForm" id="contactForm" method="post" action="formmail.php" role="form" data-toggle="validator">
                             <div class="row">
-                                <input type="hidden" name="access" value="secret">
+                                <input type="hidden" name="form" value="contact">
                                 <div class="col-xs-12 col-sm-offset-1 col-sm-5">
                                     <div class="form-group">
                                         <div class="input-group">

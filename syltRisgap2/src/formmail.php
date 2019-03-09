@@ -3,44 +3,46 @@ $sendLog = array();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if($_POST['inquiryForm'])
-    {
-        $inquirerFirstName = test_input($_POST["inquirerFirstName"]);
-        $inquirerName = test_input($_POST["inquirerName"]);
-        $inquirerEmailAddress = test_input($_POST["inquirerEmailAddress"]);
-        $inquirerPhone = test_input($_POST["inquirerPhone"]);
-        $fromDate = test_input($_POST["fromDate"]);;
-        $thruDate = test_input($_POST["thruDate"]);
-        $roomNr = test_input($_POST["roomNr"]);
-        $personCounter = test_input($_POST["personCounter"]);
-
-          if(empty($inquirerFirstName))
+        $firstName = test_input($_POST["inquirerFirstName"]);
+        $name = test_input($_POST["inquirerName"]);
+        $fromEmail = test_input($_POST["inquirerEmailAddress"]);
+        $phone = test_input($_POST["inquirerPhone"]);
+    
+          if(empty($firstName))
           {
               $sendLog['inquirerEmailAddress'] = "Bitte füllen Sie das Feld aus";
           }
-          elseif(empty($inquirerName))
-            {
+          elseif(empty($name))
+          {
                 $sendLog['inquirerName'] = "Bitte füllen Sie das Feld aus";
-            }
-          elseif(empty($inquirerPhone))
+          }
+          elseif(empty($phone))
           {
               $sendLog['inquirerPhone'] = "Bitte füllen Sie das Feld aus";
           }
-          elseif(empty($inquirerEmailAddress))
+          elseif(empty($fromEmail))
           {
               $sendLog['inquirerEmailAddress'] = "Bitte füllen Sie das Feld aus";
           }
-          elseif(!empty($inquirerEmailAddress))
+          elseif(!empty($fromEmail))
           {
-              if (filter_var($_POST["$inquirerEmailAddress"], FILTER_VALIDATE_EMAIL))
+              if (filter_var($_POST["$fromEmail"], FILTER_VALIDATE_EMAIL))
               {
                   $sendLog['inquirerEmailAddress'] = "Bitte geben Sie eine gültige email ein";
               }
               else
               {
-                  $emailFrom = $inquirerEmailAddress;
+                  $emailFrom = $fromEmail;
               }
           }
+
+	if($_POST['form'] == "inquiry")
+    {
+        $fromDate = test_input($_POST["fromDate"]);;
+        $thruDate = test_input($_POST["thruDate"]);
+        $roomNr = test_input($_POST["roomNr"]);
+        $personCounter = test_input($_POST["personCounter"]);
+
           /*
           elseif(empty($_POST["fromDate"]))
           {
@@ -58,44 +60,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Email configuration
         $mailTo = 'margot-krause@web.de';
-        $mailFrom = $inquirerEmailAddress;
+        $mailFrom = $fromEmail;
         $mailSubject    = 'Anfrage Ferienwohnung ' . $fromDate . ' bis ' . $thruDate;
         $message = 'Ferienwohnung ' . $roomNr . "<br>"
             . 'Personen ' . $personCounter . "<br>"
             . 'Von ' . $fromDate . "<br>"
             . 'Bis ' . $thruDate . "<br>"
-            . 'Name ' . $inquirerName . "<br>"
-            . 'Vorname ' . $inquirerFirstName . "<br>"
-            . 'Emailadresse ' . $inquirerEmailAddress . "<br>"
-            . 'Telefon ' . $inquirerPhone . "<br>";
+            . 'Name ' . $name . "<br>"
+            . 'Vorname ' . $firstName . "<br>"
+            . 'Emailadresse ' . $mailFrom . "<br>"
+            . 'Telefon ' . $phone . "<br>";
     }
-    elseif if ($_POST["access"] == "secret") {
-        $commentatorName = test_input($_POST["commentatorName"]);
-        $commentatorPhone = test_input($_POST["commentatorPhone"]);
-        $commentatorEmailAddress = test_input($_POST["commentatorEmailAddress"]);
-        $commmentatorText = test_input($_POST["commentatorText"]);
+    elseif ($_POST["form"] == "contact") {
 
-        if (empty($commentatorName)) {
-            $sendLog['commentatorName'] = "Bitte füllen Sie das Feld aus";
-        } elseif (empty($commentatorPhone)) {
-
-            $sendLog['commentatorPhone'] = "Bitte füllen Sie das Feld aus";
-        }
-        elseif (!empty($commentatorEmailAddress))
-        {
-            if (filter_var($_POST["$commentatorEmailAddress"], FILTER_VALIDATE_EMAIL))
-            {
-                $sendLog['commentatorEmailAddress'] = "Bitte geben Sie eine gültige Email ein";
-            }
-            else
-            {
-                $emailFrom = $commentatorEmailAddress;
-            }
-        }
-        elseif (empty($commentatorEmailAddress))
-        {
-            $sendLog['commentatorEmailAddress'] = "Bitte füllen Sie das Feld aus";
-        }
         elseif (empty($commmentatorText)) {
 
             $sendLog['commmentatorText'] = "Bitte schreiben Sie eine Nachricht";
@@ -120,7 +97,7 @@ $mailSubject2 = 'Frage zur Ferienwohnung';
 // SEND EMAIL
 $mailSent = @mail($mailTo, $mailSubject, $message,$headers);
 //$mailSent  = @mail($mailFrom,$mailSubject2,$message2,$headers); // sends a copy of the message to the sender
-
+echo($mailTo);
 
 // ======= RETURN RESPONSE
 
@@ -137,7 +114,7 @@ else {
 echo json_encode($sendLog);
 
 
-// ======= HELPERS
+// ======= HELPERS ===========
 
 // Function for filtering input values.
 function test_input($data)
