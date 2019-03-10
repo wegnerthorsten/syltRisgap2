@@ -261,5 +261,5 @@ __pycache__/
 *.pyc
 
 # exclude everything except directory foo/bar
-syltRisgap2/dev/**
-C:/Dev/syltRisgap2/syltRisgap2/syltRisgap2/dev/* .gitignore
+syltRisgap2/dev
+syltRisgap2\dev

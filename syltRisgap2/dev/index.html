@@ -60,9 +60,8 @@
     <link rel="stylesheet" href="css/svg.css">
 </head> 
 <body>
-    <p class="browserupgrade">You are usinserver site g an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <!--[if lt IE 8]>
-    <![endif]-->
+    <![endif]--> 
     <div class="container-fluid">
         <!-- MAIN CONTAINER -->
         <div class="main-container">
@@ -72,47 +71,8 @@
                     <form method="post" action="formmail.php" name="inquiryForm" id="inquiryForm" role="form" class="form-inline col-sm-offset-4 col-sm-8" data-toggle="validator">
                         <div class="row">
                             <input name="form" type="hidden" value="inquiry" />
+                            <!---Vorname -->
                             <div class="col-xs-12 col-sm-5">
-                                <div class="form-group">
-                                    <div class='input-group date' id='from'>
-                                        <span class="input-group-addon"><span class="icon-calendar"></span></span>
-                                        <input type='text' name="fromDate" class="form-control fromDate" />
-                                    </div>
-                                    <div class="help-block.with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-5">
-                                <div class="form-group">
-                                    <div class='input-group date' id='thru'>
-                                        <span class="input-group-addon">  <span class="icon-calendar"></span>  </span>
-                                        <input type="text" name="thruDate" class="form-control" />
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-5">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="icon-envelop"></i></span>
-                                        <input type="email" data-error="Bitte füllen Sie das Feld aus" name="email" class="form-control col-sm-2" placeholder="email..." required>
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-5">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="icon-phone"></i></span>
-                                        <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ...">
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-5"> 
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="icon-user"></i></span>
@@ -121,6 +81,19 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
+                           <!--fromDate-->
+                            <div class="col-xs-12 col-sm-5">
+                                <div class="form-group">
+                                    <div class='input-group date' id='from'>
+                                        <span class="input-group-addon"><span class="icon-calendar"></span></span>
+                                        <input type='text' name="fromDate" class="form-control fromDate" placeholder="Anreise"/>
+                                    </div>
+                                    <div class="help-block.with-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--name-->
                             <div class="col-xs-12 col-sm-5">
                                 <div class="form-group">
                                     <div class="input-group">
@@ -130,11 +103,31 @@
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
+                            <!--thruDate-->
+                            <div class="col-xs-12 col-sm-5">
+                                <div class="form-group">
+                                    <div class='input-group date' id='thru'>
+                                        <span class="input-group-addon">  <span class="icon-calendar"></span>  </span>
+                                        <input type="text" name="thruDate" class="form-control" placeholder="Abreise"/>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
+                           <!--phone-->
                             <div class="col-xs-12 col-sm-5">
-                                <div class="form-group ">
+                                <div class="form-group">
                                     <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-phone"></i></span>
+                                        <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ...">
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <!--WohnungNr-->
+                            <div class="form-group col-xs-12 col-sm-5">
+                                    <div class="input-group"> 
                                         <span class="input-group-addon"><i class="icon-bed"></i> </span>
                                         <select name="roomNr" class="form-control">
                                             <option value="0" selected disabled>Ferienwohnung wählen </option>
@@ -145,21 +138,36 @@
                                             <option value="room_4">Ferienwohnung 5</option>
                                         </select>
                                     </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--email-->
+                            <div class="col-xs-12 col-sm-5">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="icon-envelop"></i></span>
+                                        <input type="email" data-error="Bitte füllen Sie das Feld aus" name="email" class="form-control col-sm-2" placeholder="email..." required>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
+                            <!--Anzahl Pers-->
                             <div class="form-group col-xs-12 col-sm-5">
-                                <div class="form-group ">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="icon-users"></i> </span>
-                                        <select name="personCounter" class="form-control">
-                                            <option value="0" selected disabled>Anzahl Personen</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="icon-users"></i> </span>
+                                    <select name="personCounter" class="form-control">
+                                        <option value="0" selected disabled>Mit wieviele Personen?</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-5">
+                                <textarea class="commentatorText form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
                             </div>
                         </div>
                         <div class="row row-btn">
@@ -781,66 +789,6 @@
                             <p>Fax 04651 944537 </p>
                             <p>margot-krause(at)web.de</p>
                         </div>
-                        <form class="col-xs-12 col-sm-8" name="contactForm" id="contactForm" method="post" action="formmail.php" role="form" data-toggle="validator">
-                            <div class="row">
-                                <input type="hidden" name="form" value="contact">
-                                <div class="col-xs-12 col-sm-offset-1 col-sm-5">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icon-user"></i></span>
-                                            <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
-                                        </div>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <input type="hidden" name="form" value="contact">
-                                <div class="col-xs-12 col-sm-offset-1 col-sm-5">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="icon-user"></i></span>
-                                            <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Nachname ..." required>
-                                        </div>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-offset-1 col-sm-5">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i> </span>
-                                            <input type="email" data-error="Bitte füllen Sie das Feld aus" name="email" class="form-control col-sm-2" placeholder="Email ..." required>
-                                        </div>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-offset-1 col-sm-5">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                            <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ..." required>
-                                        </div>
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row"> 
-                                <div class="col-xs-12 col-sm-offset-1 col-sm-5">
-                                    <textarea class="commentatorText form-control" name="message" rows="4"></textarea>
-                                </div>
-                            </div>
-                            <div class="row col-sm-offset-1">
-                                <button type="submit" class="btn btn-danger col-xs-12 col-sm-5" name="contactForm">Senden</button>
-                            </div>
-                            <div class="row col-sm-offset-1">
-                                <div class="sendComment-success col-xs-12 col-sm-5"></div>
-                            </div>
-                        </form> <!-- END CONTACT FORM -->
-
                     </div>
                 </div>
 

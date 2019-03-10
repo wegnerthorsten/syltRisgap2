@@ -37,6 +37,7 @@
     <Compile Include="src\js\main.js" />
     <Compile Include="src\js\validation.js" />
     <Content Include="bower.json" />
+    <Content Include="dev\.gitignore" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="src\css\bootstrap.min.css" />
@@ -246,6 +247,7 @@
     <Content Include="src\sitemap.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="dev\" />
     <Folder Include="src\" />
     <Folder Include="src\css\" />
     <Folder Include="src\fonts\" />
