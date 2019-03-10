@@ -11,13 +11,10 @@ $(function () {
     });
 });
 
-
-
-
 // FLEXSLIDER INIT
 
 $('.wohnung-1').flexslider({
-    controlNav: false,
+    controlNav: false
 });
 $('.wohnung-2').flexslider({
     controlNav: false,
@@ -25,13 +22,13 @@ $('.wohnung-2').flexslider({
     itemHeight: 400
 });
 $('.wohnung-3').flexslider({
-    controlNav: false,
+    controlNav: false
 });
 $('.wohnung-4').flexslider({
-    controlNav: false,
+    controlNav: false
 });
 $('.wohnung-5').flexslider({
-    controlNav: false,
+    controlNav: false
 });
 
 
@@ -82,10 +79,10 @@ $("a[data-fancy=group5]").fancybox({
 });
 
 function initMap() {
-    var uluru = { lat: 54.9353248, lng: 8.322018299999968 };
-    var map = new google.maps.Map(document.getElementsByClassName('mapContainer')[0], {
+    var latlng = { lat: 54.935460, lng: 8.322040 }; 
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: latlng,
         zoom: 16,
-        center: uluru,
         styles: [
             {
                 "featureType": "poi",
@@ -98,13 +95,11 @@ function initMap() {
     });
     https:
     var marker = new google.maps.Marker({
-        position: uluru,
+        position: latlng,
         map: map
     });
 
-};
-
-
+}
 
 /* Google Analytics: change UA - XXXXX - X to be your site's ID. */
     (function (i, s, o, g, r, a, m) {

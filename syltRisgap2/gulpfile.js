@@ -196,6 +196,9 @@ gulp.task('watch:srcToDev', function () {
     gulp.watch(dirs.src + '/*.html', ['livereload:index.html']);
     gulp.watch(dirs.src + '/js/*.js', ['livereload:scripts']);
     console.log(dirs.src + '/*.php');
+    console.log('Watch src -> dev changed detected! copy file from src to dev');
+
+
 });
 
 /**
