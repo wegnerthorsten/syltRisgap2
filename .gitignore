@@ -264,4 +264,5 @@ __pycache__/
 # exclude everything except directory foo/bar
 syltRisgap2/dev
 syltRisgap2/dist
+syltRisgap2/bootstraContactForm
 
