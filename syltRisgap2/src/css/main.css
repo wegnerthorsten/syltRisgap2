@@ -1,4 +1,4 @@
-﻿#inquiryForm,
+﻿#contact-form,
 .col-centered {
     text-align: left
 }
@@ -221,10 +221,6 @@ input[type=number] {
 @media screen and (max-width:768px) {
     .footer {
         height: 1200px
-    }
-
-    #contactForm {
-        margin-top: 50px
     }
 
     .mapContainer {
