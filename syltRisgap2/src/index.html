@@ -71,63 +71,55 @@
                 <div class="row">
                     <h1 class="text-center col-sm-12">Buchen Sie hier Ihren Urlaub auf Sylt in top Lage <br>  Ferienwohnungen im Zentrum von Wenningstedt </h1>
                     <div class="col-md-12 mx-auto">
-                            <form action="formmail.php" name="contact-form" id="contact-form" role="form">
-                            <div class="row">
+                            <form action="formmail.php" name="contact-form" id="contact-form" class="form-inline justify-content-center" role="form">
+                            <div class="row margin-15px" >
                                 <input name="form" type="hidden" value="inquiry" />
                                 <!---Vorname -->
-                                <div class="col-sm-5">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
-                                            <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
-                                        </div>
-                                        <div class="help-block with-errors"></div>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
+                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                                 <!--fromDate-->
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <div class='input-group date' id='from'>
-                                            <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
-                                            <input type='text' name="fromDate" class="form-control fromDate" placeholder="Anreise" />
-                                        </div>
-                                        <div class="help-block.with-errors"></div>
-                                        </div>
+                                <div class="col-sm-6">
+                                    <div class='input-group date' id='from'>
+                                        <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
+                                        <input type='text' name="fromDate" class="form-control fromDate" placeholder="Anreise" />
+                                    </div>
+                                    <div class="help-block.with-errors"></div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row  margin-15px">
                                 <!--name-->
-                                <div class="c col-sm-5">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
-                                            <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Name ..." required>
-                                        </div>
-                                        <div class="help-block with-errors"></div>
+                                <div class="c col-sm-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
+                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Name ..." required>
                                     </div>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                                 <!--thruDate-->
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <div class='input-group date' id='thru'>
-                                            <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
-                                            <input type="text" name="thruDate" class="form-control" placeholder="Abreise" />
-                                        </div>
-                                        <div class="help-block with-errors"></div>
+                                <div class="col-sm-6">
+                                    <div class='input-group date' id='thru'>
+                                        <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
+                                        <input type="text" name="thruDate" class="form-control" placeholder="Abreise" />
                                     </div>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row  margin-15px">
                                 <!--phone-->
-                                <div class="col-sm-5">
-                                    <div class="form-group">
+                                <div class="col-sm-6">
                                         <div class="input-group">
                                             <div class="input-group-prepend"><span class="input-group-text icon-phone"></span></div>
                                             <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ...">
                                         </div>
                                         <div class="help-block with-errors"></div>
-                                    </div>
                                 </div>
                                 <!--WohnungNr-->
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text icon-bed"></span></div>
                                         <select name="roomNr" class="form-control">
@@ -141,21 +133,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row  margin-15px">
                                 <!--email-->
-                                <div class="col-sm-5">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend"><span class="input-group-text icon-envelop"></span></div>
-                                                <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ...">
-                                                <div class="help-block with-errors"></div>
-                                            </div>
-                                        </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text icon-envelop"></span></div>
+                                        <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ...">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <!--Anzahl Pers-->
-                                <div class="col-sm-5">
+                                <div class="col-sm-6">
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text icon-users"></span></div>
                                         <select name="personCounter" class="form-control">
@@ -168,16 +156,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text fa fa-pencil"></span></div>
-                                        <textarea class="commentatorText form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
-                                    </div>
+                            <div class="row form-inline justify-content-center col-sm-10  margin-15px">
+                                <div class="input-group col-sm-8">
+                                    <div class="input-group-prepend"><span class="input-group-text fa fa-pencil"></span></div>
+                                    <textarea class="form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
                                 </div>
                             </div>
-                            <div class="row row-btn">
-                                <button type="submit" class="btn btn-danger col-xs-12 col-sm-3">Senden</button>
+                            <div class="row col-sm-10 form-inline justify-content-center">
+                                <button type="submit" class="btn btn-danger px-4">Senden</button>
                             </div>
                             <!-- <button type="button" class="btn btn-primary px-4 float-right">Save</button>-->
                         </form>

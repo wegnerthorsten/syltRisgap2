@@ -109,8 +109,8 @@ input[type=number] {
     width: 80%
 }
 
-    .main-content > .row > H1 {
-        margin-bottom: 150px;
+    .main-content > .row > H1 { 
+        margin-bottom: 50px;
         line-height: 1.5;
     }
 
@@ -274,7 +274,7 @@ col-sm-offset-4 .visuallyhidden {
     width: 1px
 }
 
-.form-control {
+.margin-15px {
     margin-bottom: 15px;
 }
 .visuallyhidden.focusable:active,
