@@ -160,7 +160,6 @@
     <Content Include="bootstraContactForm\PHPMailer-master\PHPMailerAutoload.php" />
     <Content Include="bootstraContactForm\PHPMailer-master\VERSION" />
     <Content Include="bower.json" />
-    <Content Include="dev\.gitignore" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="src\css\bootstrap.min.css" />
@@ -175,19 +174,6 @@
     <Content Include="src\formmail.php" />
     <Content Include="src\img\footerBackground.jpg" />
     <Content Include="src\img\headerBackground.jpg" />
-    <Content Include="src\img\ico-accessible.png" />
-    <Content Include="src\img\ico-food.png" />
-    <Content Include="src\img\ico-gym.png" />
-    <Content Include="src\img\ico-internet.png" />
-    <Content Include="src\img\ico-ironing.png" />
-    <Content Include="src\img\ico-laundry.png" />
-    <Content Include="src\img\ico-parking.png" />
-    <Content Include="src\img\ico-phone.png" />
-    <Content Include="src\img\ico-safe.png" />
-    <Content Include="src\img\ico-shower.png" />
-    <Content Include="src\img\ico-swimming.png" />
-    <Content Include="src\img\ico-tv.png" />
-    <Content Include="src\img\ico-wake.png" />
     <Content Include="src\img\img\backgroundFooter.JPG" />
     <Content Include="src\img\img\footerBackground.jpg" />
     <Content Include="src\img\img\headerBackground.jpg" />
@@ -294,8 +280,8 @@
     <Content Include="src\img\Wohnung1\w1_wohnz_fernseh_terasse_small.jpg" />
     <Content Include="src\img\Wohnung1\w1_kueche.jpg" />
     <Content Include="src\img\Wohnung1\w1_kueche_preview.jpg" />
-    <Content Include="src\img\Wohnung1\w1_schafz2_bett2_big.jpg" />
-    <Content Include="src\img\Wohnung1\w1_schafz2_bett_big.jpg" />
+    <Content Include="src\img\Wohnung1\w1_schlafz2_bett2_big.jpg" />
+    <Content Include="src\img\Wohnung1\w1_schlafz2_bett_big.jpg" />
     <Content Include="src\img\Wohnung1\w1_schlafz_big.jpg" />
     <Content Include="src\img\Wohnung1\w1_schlafz_small.jpg" />
     <Content Include="src\img\Wohnung1\w1_terasse_small.jpg" />
@@ -367,8 +353,6 @@
     <Content Include="src\img\Wohnung5\w5_wohnzimmer2_big.jpg" />
     <Content Include="src\img\Wohnung5\w5_wohnzimmer2_small.jpg" />
     <Content Include="src\index.html" />
-    <Content Include="src\post.html" />
-    <Content Include="src\post.php" />
     <Content Include="src\sitemap.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -379,7 +363,6 @@
     <Folder Include="bootstraContactForm\PHPMailer-master\examples\styles\" />
     <Folder Include="bootstraContactForm\PHPMailer-master\extras\" />
     <Folder Include="bootstraContactForm\PHPMailer-master\language\" />
-    <Folder Include="dev\" />
     <Folder Include="bootstraContactForm\" />
     <Folder Include="src\" />
     <Folder Include="src\css\" />

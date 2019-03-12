@@ -53,11 +53,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
     <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="vendor/flexslider/flexslider.css">
     <link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="vendor/fancybox/source/jquery.fancybox.css" />
-    <link rel="stylesheet" href="vendor/flexslider/flexslider.css">
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/svg.css">
 </head>
@@ -70,105 +70,97 @@
             <div class="container main-content text-center">
                 <div class="row">
                     <h1 class="text-center col-sm-12">Buchen Sie hier Ihren Urlaub auf Sylt in top Lage <br>  Ferienwohnungen im Zentrum von Wenningstedt </h1>
-                    <div class="col-md-12 mx-auto">
-                            <form action="formmail.php" name="contact-form" id="contact-form" class="form-inline justify-content-center" role="form">
-                            <div class="row margin-15px" >
-                                <input name="form" type="hidden" value="inquiry" />
-                                <!---Vorname -->
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
-                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
-                                    </div>
+                    <form action="formmail.php" name="contact-form" id="contact-form" class="form-inline justify-content-center" role="form">
+                        <div class="row col-sm-12 margin-15px">
+                            <!---Vorname -->
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
+                                    <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <!--name-->
+                            <div class="c col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
+                                    <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Name ..." required>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <!--fromDate-->
+                            <div class="col-sm-3">
+                                <div class='input-group date' id='from'>
+                                    <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
+                                    <input type='text' name="fromDate" class="form-control fromDate" placeholder="Anreise" />
+                                </div>
+                                <div class="help-block.with-errors"></div>
+                            </div>
+                            <!--thruDate-->
+                            <div class="col-sm-3">
+                                <div class='input-group date' id='thru'>
+                                    <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
+                                    <input type="text" name="thruDate" class="form-control" placeholder="Abreise" />
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="row col-sm-12 margin-15px">
+                            <!--phone-->
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text icon-phone"></span></div>
+                                    <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ...">
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <!--email-->
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text icon-envelop"></span></div>
+                                    <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ...">
                                     <div class="help-block with-errors"></div>
                                 </div>
-                                <!--fromDate-->
-                                <div class="col-sm-6">
-                                    <div class='input-group date' id='from'>
-                                        <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
-                                        <input type='text' name="fromDate" class="form-control fromDate" placeholder="Anreise" />
-                                    </div>
-                                    <div class="help-block.with-errors"></div>
+                            </div>
+                            <!--WohnungNr-->
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text icon-bed"></span></div>
+                                    <select name="roomNr" class="form-control">
+                                        <option value="0" selected disabled>Ferienwohnung ? </option>
+                                        <option value="room_1">Ferienwohnung 1</option>
+                                        <option value="room_2">Ferienwohnung 2</option>
+                                        <option value="room_3">Ferienwohnung 3</option>
+                                        <option value="room_4">Ferienwohnung 4</option>
+                                        <option value="room_4">Ferienwohnung 5</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="row  margin-15px">
-                                <!--name-->
-                                <div class="c col-sm-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
-                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Name ..." required>
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <!--thruDate-->
-                                <div class="col-sm-6">
-                                    <div class='input-group date' id='thru'>
-                                        <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
-                                        <input type="text" name="thruDate" class="form-control" placeholder="Abreise" />
-                                    </div>
-                                    <div class="help-block with-errors"></div>
+                            <!--Anzahl Pers-->
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend"><span class="input-group-text icon-users"></span></div>
+                                    <select name="personCounter" class="form-control">
+                                        <option value="0" selected disabled>Anzahl Personen ?</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="row  margin-15px">
-                                <!--phone-->
-                                <div class="col-sm-6">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend"><span class="input-group-text icon-phone"></span></div>
-                                            <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ...">
-                                        </div>
-                                        <div class="help-block with-errors"></div>
-                                </div>
-                                <!--WohnungNr-->
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text icon-bed"></span></div>
-                                        <select name="roomNr" class="form-control">
-                                            <option value="0" selected disabled>Ferienwohnung wählen </option>
-                                            <option value="room_1">Ferienwohnung 1</option>
-                                            <option value="room_2">Ferienwohnung 2</option>
-                                            <option value="room_3">Ferienwohnung 3</option>
-                                            <option value="room_4">Ferienwohnung 4</option>
-                                            <option value="room_4">Ferienwohnung 5</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="row  col-sm-12  margin-15px">
+                            <div class="input-group col-sm-12">
+                                <div class="input-group-prepend"><span class="input-group-text fa fa-pencil"></span></div>
+                                <textarea class="form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
                             </div>
-                            <div class="row  margin-15px">
-                                <!--email-->
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text icon-envelop"></span></div>
-                                        <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ...">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-                                </div>
-                                <!--Anzahl Pers-->
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend"><span class="input-group-text icon-users"></span></div>
-                                        <select name="personCounter" class="form-control">
-                                            <option value="0" selected disabled>Mit wieviele Personen?</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-inline justify-content-center col-sm-10  margin-15px">
-                                <div class="input-group col-sm-8">
-                                    <div class="input-group-prepend"><span class="input-group-text fa fa-pencil"></span></div>
-                                    <textarea class="form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
-                                </div>
-                            </div>
-                            <div class="row col-sm-10 form-inline justify-content-center">
-                                <button type="submit" class="btn btn-danger px-4">Senden</button>
-                            </div>
-                            <!-- <button type="button" class="btn btn-primary px-4 float-right">Save</button>-->
-                        </form>
-                    </div>
-                    </div>
+                        </div>
+                        <div class="row col-sm-10 form-inline justify-content-center">
+                            <button type="submit" class="btn btn-danger px-4">Senden</button>
+                        </div>
+                        <!-- <button type="button" class="btn btn-primary px-4 float-right">Save</button>-->
+                    </form>
                 </div>
             </div>
         </div>
@@ -191,19 +183,25 @@
                     <div class="flexslider wohnung-1 col-sm-offset-1 col-sm-10 ">
                         <ul class="slides">
                             <li>
-                                <a data-fancy="group1" rel="Ferienwohnung-1" title="wohnung1" href="img/Wohnung1/w1_wohnzimmer_1.jpg"><img src="img/Wohnung1/w1_wohnzimmer_1_preview.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                <a data-fancy="group1" rel="Ferienwohnung-1" title="Wohnzimmer" href="img/Wohnung1/w1_wohnz1_big.jpg"><img src="img/Wohnung1/w1_wohnz1_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
                             </li>
                             <li>
-                                <a data-fancy="group1" rel="Ferienwohnung-1" title="wohnung1" href="img/Wohnung1/w1_wohnzimmer_2.jpg"><img src="img/Wohnung1/w1_wohnzimmer_2_preview.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                <a data-fancy="group1" rel="Ferienwohnung-1" title="Wohnzimmer" href="img/Wohnung1/w1_wohnz_fernseh_big.jpg"><img src="img/Wohnung1/w1_wohnz_fernseh_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
                             </li>
                             <li>
-                                <a data-fancy="group1" rel="Ferienwohnung-1" title="wohnung1" href="img/Wohnung1/w1_kueche.jpg"><img src="img/Wohnung1/w1_kueche_preview.jpg" alt="Ferienwohnung Kueche"></a>
+                                <a data-fancy="group1" rel="Ferienwohnung-1" title="Küche" href="img/Wohnung1/w1_kueche.jpg"><img src="img/Wohnung1/w1_kueche_preview.jpg" alt="Ferienwohnung Kueche"></a>
                             </li>
                             <li>
-                                <a data-fancy="group1" rel="Ferienwohnung-1" title="wohnung1" href="img/Wohnung1/w1_schlafzimmer.jpg"><img src="img/Wohnung1/w1_schlafzimmer_preview.jpg" alt=Ferienwohnung Schlafzimmer"></a>
+                                <a data-fancy="group1" rel="Ferienwohnung-1" title="Schlafzimmer 1" href="img/Wohnung1/w1_schlafz_big.jpg"><img src="img/Wohnung1/w1_schlafz_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
+                            </li>
+                            <li>
+                                <a data-fancy="group1" rel="Ferienwohnung-1" title="Schlafzimmer 2" href="img/Wohnung1/w1_schlafz2_bett2_big.jpg"><img src="img/Wohnung1/w1_schlafz2_bett2_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
+                            </li>
+                            <li>
+                                <a data-fancy="group1" rel="Ferienwohnung-1" title="test" href="img/Wohnung1/w1_kueche.jpg"> <img src="img/Wohnung1/w1_schlafz2_bett_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
                             </li>
                         </ul>
-                    </div>
+                    </div>         
                 </div>
                 <div class="row text-center">
                     <div class="textContainer col-xs-12 col-sm-12">
@@ -312,6 +310,7 @@
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2_kueche.jpg"><img src="img/Wohnung2/w2_kueche_preview.jpg" alt="Ferienwohnung Kueche"></a>
                             </li>
                         </ul>
+
                     </div>
                 </div>
                 <div class="row text-center">
@@ -1016,15 +1015,13 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript" src="vendor/moment/min/moment-with-locales.min.js"></script>
-    <!--<script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="vendor/fancybox/source/jquery.fancybox.js"></script>
     <script type="text/javascript" src="vendor/flexslider/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="vendor/bootstrap-validator/dist/validator.min.js"></script>
-    <!--<script type="text/javascript" src="js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/validation.js"></script>

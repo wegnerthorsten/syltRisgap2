@@ -51,9 +51,20 @@ var gulpSrc = function (opts) {
     return es.duplex(paths, files);
 };
 
-/**** CLEAN UP FOLDER ****/
-gulp.task('clean', function () {
-    return del([dirs.dev + '/*']);
+/*** DEFAULT TASK ***/
+gulp.task('default', ['clean:local-dev'], function () {
+    gulp.start(
+        'clean:local-dev',
+        'copy:index.html',
+        'copy:img',
+        'copy:fonts',
+        'copy:css',
+        'copy:js',
+        'copy:formmail.php',
+        'copy:sitemap.xml',
+        'copy:bower_components',
+        'copy:bower_components_fonts',
+        'copy:bower_components-flexslider-fonts');
 });
 
 /****** REPORTER *******/
@@ -69,8 +80,31 @@ var myReporter = map(function (file, cb) {
     cb(null, file);
 });
 
+// #### COPY FILES #####
+
+// clean dev folder
+gulp.task('clean:local-dev', function () {
+    return del([dirs.dev + '/*']);
+});
+
+// TODO: implementieren remote delete
+//gulp.task('clean:ftp-dev', function () {
+
+//    var conn = getFtpConnection();
+//    conn.delete('/dev/*', function (err) {
+//        if (err) {
+//            console.log(err);
+//        }
+//        else {
+//        return gulp
+//            .src([event.path], { base: '.', buffer: false })
+//            .pipe(conn.dest(remoteFolder));
+//        }
+//    });
+//});
+
 // kopiert alle bower componenten in den vendor ordner
-// bower install l�dt alle componenten aus der bower.json 
+// bower install lädt alle componenten aus der bower.json 
 gulp.task('copy:bower_components', function () {
     return gulp.src([
         'bower_components/flexslider/flexslider.css',
@@ -97,13 +131,18 @@ gulp.task('copy:bower_components', function () {
 
 gulp.task('copy:bower_components_fonts', function () {
     return gulp.src([
-        'bower_components/flexslider/fonts/**',
         'bower_components/bootstrap-sass/assets/fonts/bootstrap/**'])
         .pipe(rename({ dirname: '' }))
         .pipe(gulp.dest(dirs.localpath + '/vendor/fonts'));
 });
 
-// #### COPY FILES #####
+gulp.task('copy:bower_components-flexslider-fonts', function () {
+    return gulp.src([
+        'bower_components/flexslider/fonts/**'])
+        .pipe(rename({ dirname: '' }))
+        .pipe(gulp.dest(dirs.localpath + '/vendor/flexslider/fonts'));
+});
+
 gulp.task('copy:img', function () {
     return gulp.src(dirs.src + '/img/**/*')
         .pipe(gulp.dest(dirs.dev + '/img'))
@@ -134,7 +173,7 @@ gulp.task('copy:sitemap.xml', function () {
         .pipe(gulp.dest(dirs.dev))
 });
 
-gulp.task('copy:formmailer.php', function () {
+gulp.task('copy:formmail.php', function () {
     return gulp.src(dirs.src + '/formmailer.php')
         .pipe(gulp.dest(dirs.dev));
 });
@@ -178,7 +217,7 @@ gulp.task('livereload:formmailer', function () {
 
 /******** END LIVE LOCAL *********/
 
-/******** Watch update files ********/
+/******** Watch - update dev and ftp dev folders ********/
 gulp.task('watch:start-environment-dev', function () {
     gulp.start(
         'watch:srcToDev',
@@ -222,8 +261,6 @@ gulp.task('watch:ftp-deploy-dev', function () {
         });
 });
 
-
-
 // helper function to build an FTP connection based on our configuration
 function getFtpConnection() {
     return ftp.create({
@@ -235,7 +272,6 @@ function getFtpConnection() {
         log: gutil.log
     });
 }
-
 
 /******* FTP UPLOAD *******/
 // lädt die dist auf dem Server dist Ordner
@@ -268,19 +304,6 @@ gulp.task('ftp-deploy', function () {
         .pipe(conn.dest(remoteFolder));
 });
 
-/*** DEFAULT TASK ***/
-gulp.task('default', ['clean'], function () {
-    gulp.start(
-        'clean',
-        'copy:index.html',
-        'copy:img',
-        'copy:fonts',
-        'copy:css',
-        'copy:js',
-        'copy:formmailer.php',
-        'copy:sitemap.xml',
-        'watch');
-});
 
 
 /***** Html Build *****/
