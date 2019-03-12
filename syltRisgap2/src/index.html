@@ -55,7 +55,8 @@
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="vendor/flexslider/flexslider.css">
     <link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <link rel="stylesheet" href="vendor/fancybox/source/jquery.fancybox.css" />
 
     <link rel="stylesheet" href="css/main.css">
@@ -70,20 +71,20 @@
             <div class="container main-content text-center">
                 <div class="row">
                     <h1 class="text-center col-sm-12">Buchen Sie hier Ihren Urlaub auf Sylt in top Lage <br>  Ferienwohnungen im Zentrum von Wenningstedt </h1>
-                    <form action="formmail.php" name="contact-form" id="contact-form" class="form-inline justify-content-center" role="form">
+                    <form action="formmail.php" name="contact-form" id="contact-form" class="form-horizontal" role="form">
                         <div class="row col-sm-12 margin-15px">
                             <!---Vorname -->
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
+                                    <div class="input-group-addon"><span class="input-group-text icon-user"></span></div>
                                     <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
                                 </div>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <!--name-->
-                            <div class="c col-sm-3">
+                            <div class="col-sm-3">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text icon-user"></span></div>
+                                    <div class="input-group-addon"><span class="input-group-text icon-user"></span></div>
                                     <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Name ..." required>
                                 </div>
                                 <div class="help-block with-errors"></div>
@@ -91,15 +92,15 @@
                             <!--fromDate-->
                             <div class="col-sm-3">
                                 <div class='input-group date' id='from'>
-                                    <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
+                                    <div class="input-group-addon"><span class="input-group-text icon-calendar"></span></div>
                                     <input type='text' name="fromDate" class="form-control fromDate" placeholder="Anreise" />
                                 </div>
-                                <div class="help-block.with-errors"></div>
+                                <div class="help-block with-errors"></div>
                             </div>
                             <!--thruDate-->
                             <div class="col-sm-3">
-                                <div class='input-group date' id='thru'>
-                                    <div class="input-group-prepend"><span class="input-group-text icon-calendar"></span></div>
+                                <div class="input-group date" id='thru'>
+                                    <div class="input-group-addon"><span class="input-group-text icon-calendar"></span></div>
                                     <input type="text" name="thruDate" class="form-control" placeholder="Abreise" />
                                 </div>
                                 <div class="help-block with-errors"></div>
@@ -109,7 +110,7 @@
                             <!--phone-->
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text icon-phone"></span></div>
+                                    <div class="input-group-addon"><span class="input-group-text icon-phone"></span></div>
                                     <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ...">
                                 </div>
                                 <div class="help-block with-errors"></div>
@@ -117,15 +118,15 @@
                             <!--email-->
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text icon-envelop"></span></div>
+                                    <div class="input-group-addon"><span class="input-group-text icon-envelop"></span></div>
                                     <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ...">
-                                    <div class="help-block with-errors"></div>
                                 </div>
+                                <div class="help-block with-errors"></div>
                             </div>
                             <!--WohnungNr-->
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text icon-bed"></span></div>
+                                    <div class="input-group-addon"><span class="input-group-text icon-bed"></span></div>
                                     <select name="roomNr" class="form-control">
                                         <option value="0" selected disabled>Ferienwohnung ? </option>
                                         <option value="room_1">Ferienwohnung 1</option>
@@ -135,11 +136,12 @@
                                         <option value="room_4">Ferienwohnung 5</option>
                                     </select>
                                 </div>
+                                <div class="help-block with-errors"></div><!--Dient als Platzhalter-->
                             </div>
                             <!--Anzahl Pers-->
                             <div class="col-sm-3">
                                 <div class="input-group">
-                                    <div class="input-group-prepend"><span class="input-group-text icon-users"></span></div>
+                                    <div class="input-group-addon"><span class="input-group-text icon-users"></span></div>
                                     <select name="personCounter" class="form-control">
                                         <option value="0" selected disabled>Anzahl Personen ?</option>
                                         <option value="1">1</option>
@@ -148,16 +150,17 @@
                                         <option value="4">4</option>
                                     </select>
                                 </div>
+                                <div class="help-block with-errors"></div><!--Dient als Platzhalter-->
                             </div>
                         </div>
                         <div class="row  col-sm-12  margin-15px">
                             <div class="input-group col-sm-12">
-                                <div class="input-group-prepend"><span class="input-group-text fa fa-pencil"></span></div>
+                                 <div class="input-group-addon"><span class="input-group-text icon-phone"></span></div>
                                 <textarea class="form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
                             </div>
                         </div>
-                        <div class="row col-sm-10 form-inline justify-content-center">
-                            <button type="submit" class="btn btn-danger px-4">Senden</button>
+                        <div class="row col-sm-12">
+                            <button type="submit" class="btn btn-danger px-4 pull-right">Senden</button>
                         </div>
                         <!-- <button type="button" class="btn btn-primary px-4 float-right">Save</button>-->
                     </form>
@@ -175,7 +178,7 @@
         </h3>
 
         <!---Picture boxes -->
-        <div class="pictureBoxes row">
+        <div class="pictureBoxes justify-content-center row">
             <!-- BOX Ferienwohnung 1 -->
             <div class="box col-xs-12 col-sm-5">
                 <h3 class="col-sm-offset-1 col-sm-10">Ferienwohnung 1</h3>
@@ -201,7 +204,7 @@
                                 <a data-fancy="group1" rel="Ferienwohnung-1" title="test" href="img/Wohnung1/w1_kueche.jpg"> <img src="img/Wohnung1/w1_schlafz2_bett_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
                             </li>
                         </ul>
-                    </div>         
+                    </div>
                 </div>
                 <div class="row text-center">
                     <div class="textContainer col-xs-12 col-sm-12">
@@ -393,7 +396,7 @@
 
         </div><!-- End picture boxes -->
         <!---Picture boxes -->
-        <div class="pictureBoxes row">
+        <div class="pictureBoxes justify-content-center row">
 
             <!-- BOX Ferienwohnung 3 -->
             <div class="box col-xs-12 col-sm-5">
@@ -614,12 +617,12 @@
 
         </div><!-- End picture boxes -->
         <!---Picture boxes -->
-        <div class="pictureBoxes row">
+        <div class="pictureBoxes justify-content-center row">
             <!-- BOX Ferienwohnung 5-->
             <div class="box col-xs-12 col-sm-offset-2 col-sm-5">
                 <h3 class="col-sm-offset-1 col-sm-10">Ferienwohnung 5</h3>
                 <div class="row">
-                    <div class="flexslider wohnung-5 col-sm-offset-1 col-sm-10 ">
+                    <div class="flexslider wohnung-5 col-sm-offset-1">
                         <ul class="slides">
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="wohnung5" href="img/Wohnung5/w5_wohnzimmer1_big.jpg"><img src="img/Wohnung5/w5_wohnzimmer1_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
@@ -767,6 +770,7 @@
         </div><!-- End information -->
     </div>
     <!-- END APPARTMENS CONTAINER -->
+  
     <!-- FOOTER -->
     <div class="footer">
         <div class="contentWrapper">
@@ -1022,8 +1026,8 @@
     <script type="text/javascript" src="vendor/flexslider/jquery.flexslider-min.js"></script>
     <script type="text/javascript" src="vendor/bootstrap-validator/dist/validator.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
+  <!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
     <script type="text/javascript" src="js/validation.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script async defer
