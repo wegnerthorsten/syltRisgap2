@@ -10,7 +10,7 @@ require 'formValidator.php';
 require 'PHPMailer-master/PHPMailerAutoload.php';
  
 // an email address that will receive the email with the output of the form
-$sendTo = 'thorstenwegner@gmail.com';
+$sendTo = 'margot-krause@web.de';
 
 // subject of the email
 $subject = 'Anfrage Ferienwohnung'; 
@@ -20,7 +20,7 @@ $subject = 'Anfrage Ferienwohnung';
 $fields = array('fist-name' => 'Vorname', 'last-name' => 'Nachname', 'need' => 'Need', 'phone' => 'Telefonnr.', 'email' => 'Email', 'message' => 'Nachricht'); 
 
 // message that will be displayed when everything is OK :)
-$okMessage = 'Danke, ההה Ihre Anfrage ist erfolgreich gesendet, Sie erhalten schnellsten eine Antwort.';
+$okMessage = 'Danke, Ihre Anfrage ist erfolgreich gesendet, Sie erhalten schnellsten eine Antwort.';
 
 // If something goes wrong, we will display this message.
 $errorMessage = 'Es ist ein Fehler aufgetreten. Bitte rufen Sie an oder schreiben Sie mir eine Email.';
@@ -80,7 +80,7 @@ $validator = new Validator;
 			);
     
 			// Send email
-			//mail($sendTo, $subject, $emailText, implode("\n", $headers));
+			mail($sendTo, $subject, $emailText, implode("\n", $headers));
 
 			$responseArray = array('type' => 'success', 'message' => $okMessage);
 		}
