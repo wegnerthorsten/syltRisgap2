@@ -71,21 +71,25 @@
             <div class="container main-content text-center">
                 <div class="row">
                     <h1 class="text-center col-sm-12">Buchen Sie hier Ihren Urlaub auf Sylt in top Lage <br>  Ferienwohnungen im Zentrum von Wenningstedt </h1>
-                    <form action="formmail.php" name="contact-form" id="contact-form" class="form-horizontal" role="form">
+                    <form name="contact-form" id="contact-form" class="form-horizontal" role="form">
                         <div class="row col-sm-12 margin-15px">
                             <!---Vorname -->
-                            <div class="col-sm-3">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><span class="input-group-text icon-user"></span></div>
-                                    <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="firstName" placeholder="Vorname ..." required>
-                                </div>
+                            <div class="col-sm-3"> 
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-user"></span>
+                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="first-name" placeholder="Vorname ...">
+                                    </div>
+                                </div> 
                                 <div class="help-block with-errors"></div>
                             </div>
                             <!--name-->
                             <div class="col-sm-3">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><span class="input-group-text icon-user"></span></div>
-                                    <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="name" placeholder="Name ..." required>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="input-group-text icon-user"></span></div>
+                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="last-name" placeholder="Name ..." >
+                                    </div>
                                 </div>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -93,15 +97,17 @@
                             <div class="col-sm-3">
                                 <div class='input-group date' id='from'>
                                     <div class="input-group-addon"><span class="input-group-text icon-calendar"></span></div>
-                                    <input type='text' name="fromDate" class="form-control fromDate" placeholder="Anreise" />
+                                    <input type='text' name="from-date" class="form-control fromDate" placeholder="Anreise" />
                                 </div>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <!--thruDate-->
                             <div class="col-sm-3">
-                                <div class="input-group date" id='thru'>
-                                    <div class="input-group-addon"><span class="input-group-text icon-calendar"></span></div>
-                                    <input type="text" name="thruDate" class="form-control" placeholder="Abreise" />
+                                <div class="form-group">
+                                    <div class="input-group date" id='thru'>
+                                        <div class="input-group-addon"><span class="input-group-text icon-calendar"></span></div>
+                                        <input type="text" name="thru-date" class="form-control" placeholder="Abreise" />
+                                    </div>
                                 </div>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -109,17 +115,21 @@
                         <div class="row col-sm-12 margin-15px">
                             <!--phone-->
                             <div class="col-sm-3">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><span class="input-group-text icon-phone"></span></div>
-                                    <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ...">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="input-group-text icon-phone"></span></div>
+                                        <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ..." >
+                                    </div>
                                 </div>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <!--email-->
                             <div class="col-sm-3">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><span class="input-group-text icon-envelop"></span></div>
-                                    <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ...">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="input-group-text icon-envelop"></span></div>
+                                        <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ..." >
+                                    </div>
                                 </div>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -127,7 +137,7 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="input-group-text icon-bed"></span></div>
-                                    <select name="roomNr" class="form-control">
+                                    <select name="room-nr" class="form-control">
                                         <option value="0" selected disabled>Ferienwohnung ? </option>
                                         <option value="room_1">Ferienwohnung 1</option>
                                         <option value="room_2">Ferienwohnung 2</option>
@@ -142,12 +152,12 @@
                             <div class="col-sm-3">
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="input-group-text icon-users"></span></div>
-                                    <select name="personCounter" class="form-control">
+                                    <select name="person-counter" class="form-control">
                                         <option value="0" selected disabled>Anzahl Personen ?</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
+                                        <option value="1 Person">1</option>
+                                        <option value="2 Personen">2</option>
+                                        <option value="3 Personen">3</option>
+                                        <option value="4 Personen">4</option>
                                     </select>
                                 </div>
                                 <div class="help-block with-errors"></div><!--Dient als Platzhalter-->
@@ -155,7 +165,7 @@
                         </div>
                         <div class="row  col-sm-12  margin-15px">
                             <div class="input-group col-sm-12">
-                                 <div class="input-group-addon"><span class="input-group-text icon-phone"></span></div>
+                                <div class="input-group-addon"><span class="input-group-text glyphicon glyphicon-pencil"></span></div>
                                 <textarea class="form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
                             </div>
                         </div>
@@ -770,7 +780,6 @@
         </div><!-- End information -->
     </div>
     <!-- END APPARTMENS CONTAINER -->
-  
     <!-- FOOTER -->
     <div class="footer">
         <div class="contentWrapper">
@@ -1024,11 +1033,10 @@
     <script type="text/javascript" src="vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="vendor/fancybox/source/jquery.fancybox.js"></script>
     <script type="text/javascript" src="vendor/flexslider/jquery.flexslider-min.js"></script>
-    <script type="text/javascript" src="vendor/bootstrap-validator/dist/validator.min.js"></script>
+    <!-- TODO: js und css files entfernen -->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>-->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
-  <!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
-    <script type="text/javascript" src="js/validation.js"></script>
+    <script  type="text/javascript" src="js/contact.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB34262Bwrn0lD4Hcifwrf1bI2n6oudlVU&callback=initMap">

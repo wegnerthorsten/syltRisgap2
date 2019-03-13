@@ -60,7 +60,7 @@ gulp.task('default', ['clean:local-dev'], function () {
         'copy:fonts',
         'copy:css',
         'copy:js',
-        'copy:formmail.php',
+        'copy:php',
         'copy:sitemap.xml',
         'copy:bower_components',
         'copy:bower_components_fonts',
@@ -145,36 +145,36 @@ gulp.task('copy:bower_components-flexslider-fonts', function () {
 
 gulp.task('copy:img', function () {
     return gulp.src(dirs.src + '/img/**/*')
-        .pipe(gulp.dest(dirs.dev + '/img'))
+        .pipe(gulp.dest(dirs.dev + '/img'));
+});
+
+gulp.task('copy:php', function () {
+    return gulp.src(dirs.src + '/php/**/*')
+        .pipe(gulp.dest(dirs.dev + '/php'));
 });
 
 gulp.task('copy:fonts', function () {
     return gulp.src(dirs.src + '/fonts/**/*')
-        .pipe(gulp.dest(dirs.dev + '/fonts'))
+        .pipe(gulp.dest(dirs.dev + '/fonts'));
 });
 
 gulp.task('copy:js', function () {
     return gulp.src(dirs.src + '/js/**/*')
-        .pipe(gulp.dest(dirs.dev + '/js'))
+        .pipe(gulp.dest(dirs.dev + '/js'));
 });
 
 gulp.task('copy:css', function () {
     return gulp.src(dirs.src + '/css/**/*.css')
-        .pipe(gulp.dest(dirs.dev + '/css'))
+        .pipe(gulp.dest(dirs.dev + '/css'));
 });
 
 gulp.task('copy:index.html', function () {
     return gulp.src(dirs.src + '/index.html')
-        .pipe(gulp.dest(dirs.dev))
+        .pipe(gulp.dest(dirs.dev));
 });
 
 gulp.task('copy:sitemap.xml', function () {
     return gulp.src(dirs.src + '/sitemap.xml')
-        .pipe(gulp.dest(dirs.dev))
-});
-
-gulp.task('copy:formmail.php', function () {
-    return gulp.src(dirs.src + '/formmailer.php')
         .pipe(gulp.dest(dirs.dev));
 });
 
@@ -207,10 +207,10 @@ gulp.task('livereload:sitemap', function () {
         .pipe(livereload());
 });
 
-gulp.task('livereload:formmailer', function () {
+gulp.task('livereload:php', function () {
     return gulp.src(
-        dirs.src + '/*.php')
-        .pipe(gulp.dest(dirs.dev))
+        dirs.src + '/php/*')
+        .pipe(gulp.dest(dirs.dev + '/php'))
         .pipe(livereload());
 });
 
@@ -231,10 +231,9 @@ gulp.task('watch:srcToDev', function () {
 
     gulp.watch(dirs.src + '/css/*.css', ['livereload:styles']);
     gulp.watch(dirs.src + '/*.xml', ['livereload:sitemap']);
-    gulp.watch(dirs.src + '/*.php', ['livereload:formmailer']);
+    gulp.watch(dirs.src + '/php/*', ['livereload:php']);
     gulp.watch(dirs.src + '/*.html', ['livereload:index.html']);
     gulp.watch(dirs.src + '/js/*.js', ['livereload:scripts']);
-    console.log(dirs.src + '/*.php');
     console.log('Watch src -> dev changed detected! copy file from src to dev');
 
 
