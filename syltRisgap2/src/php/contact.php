@@ -8,26 +8,22 @@ error_reporting(E_ALL & ~E_NOTICE);
  */
 require 'formValidator.php';
 require 'PHPMailer-master/PHPMailerAutoload.php';
-//require 'validatdor.php'; 
- 
-// an email address that will be in the From field of the email.
-$from = 'Demo contact form <demo@domain.com>';
  
 // an email address that will receive the email with the output of the form
 $sendTo = 'thorstenwegner@gmail.com';
 
 // subject of the email
-$subject = 'New message from contact form'; 
+$subject = 'Anfrage Ferienwohnung'; 
 
 // form field names and their translations.
 // array variable name => Text to appear in the email
-$fields = array('name' => 'Name', 'surname' => 'Surname', 'need' => 'Need', 'email' => 'Email', 'message' => 'Message'); 
+$fields = array('fist-name' => 'Vorname', 'last-name' => 'Nachname', 'need' => 'Need', 'phone' => 'Telefonnr.', 'email' => 'Email', 'message' => 'Nachricht'); 
 
 // message that will be displayed when everything is OK :)
-$okMessage = 'Contact form successfully submitted. Thank you, I will get back to you soon!';
+$okMessage = 'Danke, ההה Ihre Anfrage ist erfolgreich gesendet, Sie erhalten schnellsten eine Antwort.';
 
 // If something goes wrong, we will display this message.
-$errorMessage = 'There was an error while submitting the form. Please try again later';
+$errorMessage = 'Es ist ein Fehler aufgetreten. Bitte rufen Sie an oder schreiben Sie mir eine Email.';
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -40,16 +36,26 @@ $validator = new Validator;
 	// validating...
 	if (!$validator->validate($_POST)) {
 		// looks like there are errors in input
-		echo "<div class=\"errors\">"; 
-		echo "<b>Looks like you have errors in input:</b><br />";
+		//{"type":"success","message":"Danke, Ihre Anfrage ist erfolgreich gesendet, Sie erhalten schnellsten eine Antwort."}
+		
+		$numItems = count($validator->errors());
+		$i = 0;
+		$msg = "";
 		foreach ($validator->errors() as $field => $errors) {
-			foreach ($errors as $error)
-				echo "<p>{$error}</p>";
+			foreach($errors as $error)	{
+				$msg .= $error;
+			}
 		}
-		echo "</div>";
+		$responseArray = array('type' => 'error', 'message' => $msg);
+
+		$utf8responseArray = utf8ize($responseArray);
+		$encoded = json_encode($utf8responseArray);
+		
+		echo $encoded;
 	} 
 	else {
-
+	
+	$from = $_POST['email'];
 	/*
 	*  Sending
 	*/
@@ -57,7 +63,7 @@ $validator = new Validator;
 		{
 			if(count($_POST) == 0) throw new \Exception('Form is empty');
             
-			$emailText = "You have a new message from your contact form\n=============================\n";
+			$emailText = "Anfrage Ferienwohnung\n=============================\n";
 
 			foreach ($_POST as $key => $value) {
 				// If the field exists in the $fields array, include it in the email 
@@ -74,7 +80,7 @@ $validator = new Validator;
 			);
     
 			// Send email
-			mail($sendTo, $subject, $emailText, implode("\n", $headers));
+			//mail($sendTo, $subject, $emailText, implode("\n", $headers));
 
 			$responseArray = array('type' => 'success', 'message' => $okMessage);
 		}
@@ -86,10 +92,9 @@ $validator = new Validator;
 
 		// if requested by AJAX request return JSON response
 		if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-			$encoded = json_encode($responseArray);
-
-			header('Content-Type: application/json');
-
+			
+			$utf8esponseArray = utf8ize($responseArray);
+			$encoded = json_encode($utf8esponseArray);
 			echo $encoded;
 		}
 		// else just display the message
@@ -100,4 +105,14 @@ $validator = new Validator;
 	}
 }
 
+function utf8ize($mixed) {
+    if (is_array($mixed)) {
+        foreach ($mixed as $key => $value) {
+            $mixed[$key] = utf8ize($value);
+        }
+    } else if (is_string ($mixed)) {
+        return utf8_encode($mixed);
+    }
+    return $mixed;
+}
 ?>

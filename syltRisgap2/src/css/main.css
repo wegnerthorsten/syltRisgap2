@@ -1,4 +1,12 @@
-﻿#contact-form,
+﻿/***bootstrap remove default stype ***/
+input[type="text"], textarea {
+    outline: none;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+}
+
+/**contact-form**/
+#contact-form,
 .col-centered {
     text-align: left
 }

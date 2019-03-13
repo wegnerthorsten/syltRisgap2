@@ -274,7 +274,7 @@ function getFtpConnection() {
 
 /******* FTP UPLOAD *******/
 // lädt die dist auf dem Server dist Ordner
-gulp.task('upload', function () {
+gulp.task('upload:dev-to-ftp-dev', function () {
 
     var conn = getFtpConnection();
 

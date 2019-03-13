@@ -1,13 +1,14 @@
 $(function () {
     $('#from').datetimepicker({
-        format: 'DD MM YYYY'
-
+        format: 'DD MM YYYY',
+        locale: 'de'
     });
 });
 
 $(function () {
     $('#thru').datetimepicker({
-        format: 'DD MM YYYY'
+        format: 'DD MM YYYY',
+        locale: 'de'
     });
 });
 

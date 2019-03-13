@@ -16,7 +16,7 @@ class Validator {
     protected $messages = [
         'required' => 'Das Feld darf nicht leer sein.',
         'nonzero' => 'Feld darf nicht 0 sein.',
-        'email' => 'Es ist eine ungültige Email.',
+        'email' => 'Es ist keine ungültige Email Adresse.',
         'phone' => 'Keine gültige Telefonnr.',
     ]; 
 
@@ -33,7 +33,6 @@ class Validator {
             // for each rule
             foreach ($rules as $rule)
 			{
-				//var_dump($rules . "\r\n");
                 // call function with name "checkNameofrule". Example: checkMail or checkRequired
                 if (!$this->{"check" . ucfirst($rule)}($input, $field))
 				{
@@ -77,11 +76,10 @@ class Validator {
     }
 
 	function checkNumeric($input, $field){
-		
-		if(!is_numeric($input))
-			return false;
+		if(is_numeric($input[$field]))
+			return true;
 
-		return true;
+		return false;
 	}
 }
 

@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon icon-user"></span>
-                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="first-name" placeholder="Vorname ...">
+                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="first-name" placeholder="Vorname" required>
                                     </div>
                                 </div> 
                                 <div class="help-block with-errors"></div>
@@ -88,7 +88,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="input-group-text icon-user"></span></div>
-                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="last-name" placeholder="Name ..." >
+                                        <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="last-name" placeholder="Name" required >
                                     </div>
                                 </div>
                                 <div class="help-block with-errors"></div>
@@ -118,7 +118,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="input-group-text icon-phone"></span></div>
-                                        <input type="number" class="form-control" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon ..." >
+                                        <input class="form-control" type="number" name="phone" data-error="Bitte nur Zahlen eingeben" placeholder="Telefon" required>
                                     </div>
                                 </div>
                                 <div class="help-block with-errors"></div>
@@ -128,7 +128,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-addon"><span class="input-group-text icon-envelop"></span></div>
-                                        <input type="email" class="form-control" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email ..." >
+                                        <input  class="form-control" type="email" name="email" data-error="Bitte korrekte email eingeben" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <div class="help-block with-errors"></div>
@@ -166,13 +166,13 @@
                         <div class="row  col-sm-12  margin-15px">
                             <div class="input-group col-sm-12">
                                 <div class="input-group-addon"><span class="input-group-text glyphicon glyphicon-pencil"></span></div>
-                                <textarea class="form-control" name="message" rows="4" placeholder="Nachricht ..."></textarea>
+                                <textarea class="form-control" name="message" rows="4" placeholder="Nachricht"></textarea>
                             </div>
                         </div>
                         <div class="row col-sm-12">
+                            <div class="messages"></div>
                             <button type="submit" class="btn btn-danger px-4 pull-right">Senden</button>
                         </div>
-                        <!-- <button type="button" class="btn btn-primary px-4 float-right">Save</button>-->
                     </form>
                 </div>
             </div>
@@ -1034,7 +1034,7 @@
     <script type="text/javascript" src="vendor/fancybox/source/jquery.fancybox.js"></script>
     <script type="text/javascript" src="vendor/flexslider/jquery.flexslider-min.js"></script>
     <!-- TODO: js und css files entfernen -->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script  type="text/javascript" src="js/contact.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
