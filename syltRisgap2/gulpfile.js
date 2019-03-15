@@ -1,26 +1,27 @@
-/// <binding ProjectOpened='ftp-deploy-watch' />
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
-var htmlbuild = require('gulp-htmlbuild');
 var es = require('event-stream');
-var uglify = require('gulp-uglify');
-var cleanCss = require('gulp-clean-css');
-var rename = require('gulp-rename');
-var pkg = require('./package.json');
-var livereload = require('gulp-livereload');
-var jshint = require('gulp-jshint');
+var livereload = require('gulp-livereload'); 
 var del = require('del');
-var map = require('map-stream');
 var ftp = require('vinyl-ftp');
 var gutil = require('gulp-util');
-var gulpFilter = require('gulp-filter');
-var mainBowerFiles = require('main-bower-files');
-var server = require('gulp-server-livereload');
-var plumber = require('gulp-plumber');
-var dirs = pkg['sr2-config'].directories;
-var cleanCSS = require('gulp-clean-css');
+var map = require('map-stream'); // use reporter
+var jshint = require('gulp-jshint'); // validate js
+plugins.concatreplace = require('gulp-concat-replace'); // replace reference, concatinate css and js filess
+var csslint = require('gulp-csslint'); // validate css
+var pipeline = require('readable-stream').pipeline;
+var uglify = require('gulp-uglify'); // min js
+var msg = require('gulp-msg'); // write msg in output
+var cleanCSS = require('gulp-clean-css'); // minify css
 
-// **** Webserver config ****
+//var mainBowerFiles = require('main-bower-files');
+//var server = require('gulp-server-livereload'); // not use
+
+/*****config environment********/
+var pkg = require('./package.json');
+var dirs = pkg['sr2-config'].directories;
+
+/****config webserver ****/
 var user = 'rigap2@sylt-risgap2.de';
 var password = 'X9sylt-risgap2.deX9';
 var host = 'ftp.sylt-risgap2.de';
@@ -30,10 +31,11 @@ var port = 21;
 var localFilesGlob = ['dev/**'];
 var remoteFolder = '';
 
+
 /*###### Introduction #######*/
 /* Die Ordner Struktur besteht aus src, dev und dist. Die src ist der Quelle Ordner zum local entwickeln, 
- * Initialisieren der Application, fÃ¼hre alle copy-... src -> dev aus, erstellt die dev Ordner Struktur, kopiert  alle files und Bilder in den dev    
- * Bower, kopiert alle benÃ¶tigen Files in das vendor Verzeichnis
+ * Initialisieren der Application, führe alle copy-... src -> dev aus, erstellt die dev Ordner Struktur, kopiert  alle files und Bilder in den dev    
+ * Bower, kopiert alle benötigen Files in das vendor Verzeichnis
  * Copy dev -> dist erstellt die dev ordner Strukturen und kopiert alle files aus dem dev -> dist
  * Copy bower components, kopiert alle libraries,fonts etc. ins vendor Verzeichnis
  * Watch-srcToDev starten, wenn eines der Files bearbeitet worden sind, kopiert watch das File von src -> dev 
@@ -67,18 +69,7 @@ gulp.task('default', ['clean:local-dev'], function () {
         'copy:bower_components-flexslider-fonts');
 });
 
-/****** REPORTER *******/
-var myReporter = map(function (file, cb) {
-    if (!file.jshint.success) {
-        console.log('JSHINT fail in ' + file.path);
-        file.jshint.results.forEach(function (err) {
-            if (err) {
-                console.log(' ' + file.path + ': line ' + err.line + ', col ' + err.character + ', code ' + err.code + ', ' + err.reason);
-            }
-        });
-    }
-    cb(null, file);
-});
+
 
 // #### COPY FILES #####
 
@@ -104,7 +95,7 @@ gulp.task('clean:local-dev', function () {
 //});
 
 // kopiert alle bower componenten in den vendor ordner
-// bower install lÃ¤dt alle componenten aus der bower.json 
+// bower install lädt alle componenten aus der bower.json 
 gulp.task('copy:bower_components', function () {
     return gulp.src([
         'bower_components/flexslider/flexslider.css',
@@ -126,7 +117,7 @@ gulp.task('copy:bower_components', function () {
     {
         base: 'bower_components/'
     })
-        .pipe(gulp.dest(dirs.localpath + '/vendor/'));
+        .pipe(gulp.dest(dirs.localpath + '/vendor/')); // TODO : locapath anpassen
 });
 
 gulp.task('copy:bower_components_fonts', function () {
@@ -273,7 +264,7 @@ function getFtpConnection() {
 }
 
 /******* FTP UPLOAD *******/
-// lÃ¤dt die dist auf dem Server dist Ordner
+// lädt die dist auf dem Server dist Ordner
 gulp.task('upload:dev-to-ftp-dev', function () {
 
     var conn = getFtpConnection();
@@ -303,71 +294,84 @@ gulp.task('ftp-deploy', function () {
         .pipe(conn.dest(remoteFolder));
 });
 
-
-
-/***** Html Build *****/
-//Extract content from html und bennent die css, js Referenzen um
-// Kopiert die js, css files in einem file und miniert das file
-
-var jsBuild = es.pipeline(
-    plugins.concat('concat.js'),
-    gulp.dest(dirs.localpath + '/js')
-);
-
-var cssBuild = es.pipeline(
-    plugins.concat('concat.css'),
-    gulp.dest(dirs.localpath + '/css')
-);
-
-gulp.task('build-css-js', function () {
-    gulp.src(['./index.html'])
-        .pipe(htmlbuild({
-            // build js with preprocessor
-            js: htmlbuild.preprocess.js(function (block) {
-
-                block.pipe(gulpSrc({ root: __dirname }))
-                    .pipe(jshint())
-                    .pipe(myReporter)
-                    .pipe(uglify())
-                    .pipe(jsBuild);
-
-                block.end('js/min.all.js');
-
-            }),
-
-            // build css with preprocessor
-            css: htmlbuild.preprocess.css(function (block) {
-
-                block.pipe(gulpSrc({ root: __dirname }))
-                    .pipe(cleanCSS({ compatibility: 'ie8' })) // minimiert die css files
-                    .pipe(cssBuild); // kopiert alle Css files in ein file 
-
-                block.end('css/min.all.css');
-
-            }),
-
-            // remove blocks with this target
-            remove: function (block) {
-                block.end();
-            },
-
-            // add a header with this target
-            header: function (block) {
-                es.readArray([
-                    '<!--',
-                    '  processed by htmlbuild',
-                    '-->'
-                ].map(function (str) {
-                    return block.indent + str;
-                })).pipe(block);
-            }
-        }))
-        .pipe(gulp.dest(dirs.localpath));
+/***** Build Process *****/
+gulp.task('build:start-process', ['build:clean-dist-local', 'build:minify-js', 'build:minify-css'], function () {
+    gulp.start(
+        'build:html',
+        'build:validator-js',
+        'build:validator-css',
+        'build:copy-files');
 });
 
-/** Dist **/
-gulp.task('copy:devToDist', function () {
-    return gulp.src(dirs.dev + '/**')
-        .pipe(gulp.dest(dirs.dist))
+gulp.task('build:clean-dist-local', function () {
+    return del([dirs.dist + '/*']);
+});
+
+/****** Compressors ******/
+gulp.task('build:minify-js', function () {
+    return gulp.src(['dev/js/*.js'])
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js/'));
+});
+
+gulp.task('build:minify-css', () => {
+    // Folder with files to minify
+    return gulp.src('dev/css/*.css')
+        //The method pipe() allow you to chain multiple tasks together 
+        //I execute the task to minify the files
+        .pipe(cleanCSS())
+        //I define the destination of the minified files with the method dest
+        .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('build:html', function () {
+    gulp.src('dist/index.html')
+        .pipe(plugins.concatreplace({
+            prefix: "min.all",      // file renaming
+            replaceFileName:"main", // file renaming
+            base: "../",    //Wenn der Seitenimportpfad mit "/" beginnt, entspricht er dem Verzeichnis gulpfile.js, der Standardeinstellung "../".
+            output: {   // pfad fürs css und js
+                css: "/build/css",
+                js: "/build/js"
+            }
+        }))
+        .pipe(gulp.dest('build/')); //  Pfad für index.html
+
+  //  del.sync(['dist/css/main.css', 'dist/js/main.js', 'dist/js/validation.js', 'dist/js/contact.js', 'dist/css/svg.css']);    
+});
+
+/****** Validatoren ******/
+gulp.task('build:validator-js', function () {
+    return gulp.src(['dev/js/*.js'])
+        .pipe(jshint()) // js validieren
+        .pipe(jshint.reporter('default'));   // Validierungsmeldungen  ausgaben
+});
+
+gulp.task('build:validator-css', function () {
+    return gulp.src(['dev/css/*.css'])
+        .pipe(csslint())    // css validieren 
+        .pipe(csslint.formatter()); // ??
+});
+
+/******* Copy ***********/
+// Kopiert alle files die nicht im gebuilded werden
+gulp.task('build:copy-files', function () {
+    console.log('test ' + dirs.dist);
+    return gulp.src([dirs.dev + '/**', '!dev/css/**', '!dev/js/**'])
+        .pipe(gulp.dest(dirs.dist));
+});
+
+/** Helper **/ 
+// not in used
+var myReporter = map(function (file, cb) {
+    if (!file.jshint.success) {
+        console.log('JSHINT fail in ' + file.path);
+        file.jshint.results.forEach(function (err) {
+            if (err) {
+                console.log(' ' + file.path + ': line ' + err.line + ', col ' + err.character + ', code ' + err.code + ', ' + err.reason);
+            }
+        });
+    }
+    cb(null, file);
 });
 

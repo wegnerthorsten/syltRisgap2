@@ -31,9 +31,11 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="dist\js\contact.js" />
+    <Compile Include="dist\js\main.js" />
+    <Compile Include="dist\js\validation.js" />
     <Compile Include="gulpfile.js" />
     <Compile Include="server.js" />
-    <Compile Include="src\js\bootstrap.min.js" />
     <Compile Include="src\js\contact.js" />
     <Compile Include="src\js\main.js" />
     <Compile Include="src\js\validation.js" />
@@ -43,11 +45,13 @@
     <Compile Include="src\php\PHPMailer-master\examples\scripts\shLegacy.js" />
     <Compile Include="src\php\PHPMailer-master\examples\scripts\XRegExp.js" />
     <Content Include="bower.json" />
+    <Content Include="dist\css\main.css" />
+    <Content Include="dist\css\svg.css" />
+    <Content Include="dist\index.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="src\php\formValidator.php" />
     <Content Include="src\php\contact.php" />
-    <Content Include="src\css\bootstrap.min.css" />
     <Content Include="src\css\main.css" />
     <Content Include="src\css\svg.css" />
     <Content Include="src\fonts\glyphicons-halflings-regular.woff" />
@@ -346,6 +350,9 @@
     <Content Include="src\sitemap.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="dist\" />
+    <Folder Include="dist\css\" />
+    <Folder Include="dist\js\" />
     <Folder Include="src\" />
     <Folder Include="src\css\" />
     <Folder Include="src\fonts\" />

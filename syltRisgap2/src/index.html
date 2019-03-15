@@ -51,20 +51,21 @@
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-  
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/flexslider/flexslider.css">
     <link rel="stylesheet" href="vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
     <link rel="stylesheet" href="vendor/fancybox/source/jquery.fancybox.css" />
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <!-- build:css  -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/svg.css">
+    <!-- endbuild -->
 </head>
 <body>
     <!--[if lt IE 8]>
-    <![endif]-->
+    <![endif]--> 
     <div class="container-fluid">
         <!-- MAIN CONTAINER -->
         <div class="main-container">
@@ -74,13 +75,13 @@
                     <form name="contact-form" id="contact-form" class="form-horizontal" role="form">
                         <div class="row col-sm-12 margin-bottom15">
                             <!---Vorname -->
-                            <div class="col-sm-2 col-sm-offset-1"> 
+                            <div class="col-sm-2 col-sm-offset-1">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon icon-user"></span>
                                         <input type="text" class="form-control" data-error="Bitte füllen Sie das Feld aus" name="first-name" placeholder="Vorname" required>
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <!--name-->
@@ -113,7 +114,7 @@
                                 </div>
                                 <div class="help-block with-errors"></div>
                             </div>
-                            </div>
+                        </div>
                         <div class="row col-sm-12 margin-bottom15">
                             <!--phone-->
                             <div class="col-sm-2 col-sm-offset-1">
@@ -203,27 +204,33 @@
                         <ul class="slides">
                             <li>
                                 <a data-fancy="group1" rel="Ferienwohnung-1" title="Wohnzimmer" href="img/Wohnung1/w1_wohnz1_big.jpg">
-                                <img src="img/Wohnung1/w1_wohnz1_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung1/w1_wohnz1_small.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group1" rel="Ferienwohnung-1" title="Wohnzimmer" href="img/Wohnung1/w1_wohnz_fernseh_big.jpg">
-                                <img src="img/Wohnung1/w1_wohnz_fernseh_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung1/w1_wohnz_fernseh_small.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group1" rel="Ferienwohnung-1" title="Küche" href="img/Wohnung1/w1_kueche.jpg">
-                                <img src="img/Wohnung1/w1_kueche_preview.jpg" alt="Ferienwohnung Kueche"></a>
+                                    <img src="img/Wohnung1/w1_kueche_preview.jpg" alt="Ferienwohnung Kueche">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group1" rel="Ferienwohnung-1" title="Schlafzimmer 1" href="img/Wohnung1/w1_schlafz_big.jpg">
-                                <img src="img/Wohnung1/w1_schlafz_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
+                                    <img src="img/Wohnung1/w1_schlafz_small.jpg" alt="Ferienwohnung Schlafzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group1" rel="Ferienwohnung-1" title="Schlafzimmer 2" href="img/Wohnung1/w1_schlafz2_bett2_big.jpg">
-                                <img src="img/Wohnung1/w1_schlafz2_bett2_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
+                                    <img src="img/Wohnung1/w1_schlafz2_bett2_small.jpg" alt="Ferienwohnung Schlafzimmer">
+                                </a>
                             </li>
                             <li>
-                                <a data-fancy="group1" rel="Ferienwohnung-1" title="test" href="img/Wohnung1/w1_kueche.jpg"> 
-                                <img src="img/Wohnung1/w1_schlafz2_bett_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
+                                <a data-fancy="group1" rel="Ferienwohnung-1" title="test" href="img/Wohnung1/w1_kueche.jpg">
+                                    <img src="img/Wohnung1/w1_schlafz2_bett_small.jpg" alt="Ferienwohnung Schlafzimmer">
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -315,31 +322,38 @@
                         <ul class="slides">
                             <li>
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2-wohnzimmer_2.jpg">
-                                <img src="img/Wohnung2/w2_wohnzimmer_2_preview.jpg" alt="Ferienwohnung Wohnzimmer 2"></a>
+                                    <img src="img/Wohnung2/w2_wohnzimmer_2_preview.jpg" alt="Ferienwohnung Wohnzimmer 2">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2-wohnzimmer_1.jpg">
-                                <img src="img/Wohnung2/w2_wohnzimmer_preview.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung2/w2_wohnzimmer_preview.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2-wohnzimmer_3.jpg">
-                                <img src="img/Wohnung2/w2_kueche_preview.jpg" alt="Ferienwohnung Kueche"></a>
+                                    <img src="img/Wohnung2/w2_kueche_preview.jpg" alt="Ferienwohnung Kueche">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2-schlafzimmer_1.jpg">
-                                <img src="img/Wohnung2/w2-schlafzimmer_1_small.jpg" alt="Ferienwohnung Kueche"></a>
+                                    <img src="img/Wohnung2/w2-schlafzimmer_1_small.jpg" alt="Ferienwohnung Kueche">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2-schlafzimmer_2.jpg">
-                                <img src="img/Wohnung2/w2-schlafzimmer_2_small.jpg" alt="Ferienwohnung Kueche"></a>
+                                    <img src="img/Wohnung2/w2-schlafzimmer_2_small.jpg" alt="Ferienwohnung Kueche">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2_bad.jpg">
-                                <img src="img/Wohnung2/w2_bad_preview.jpg" alt="Ferienwohnung Bad"></a>
+                                    <img src="img/Wohnung2/w2_bad_preview.jpg" alt="Ferienwohnung Bad">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group2" rel="Ferienwohnung-2" title="wohnung2" href="img/Wohnung2/w2_kueche.jpg">
-                                <img src="img/Wohnung2/w2_kueche_preview.jpg" alt="Ferienwohnung Kueche"></a>
+                                    <img src="img/Wohnung2/w2_kueche_preview.jpg" alt="Ferienwohnung Kueche">
+                                </a>
                             </li>
                         </ul>
 
@@ -532,19 +546,23 @@
                         <ul class="slides">
                             <li>
                                 <a data-fancy="group4" rel="Ferienwohnung-4" title="Wohnzimmer" href="img/Wohnung4/w4_wohnzimmer_Bett_big.jpg">
-                                <img src="img/Wohnung4/w4_wohnzimmer_Bett_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung4/w4_wohnzimmer_Bett_small.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group4" rel="Ferienwohnung-4" title="Küche" href="img/Wohnung4/w4_kueche_1.jpg">
-                                <img src="img/Wohnung4/w4_kueche_preview.jpg" alt="Ferienwohnung Kueche"></a>
+                                    <img src="img/Wohnung4/w4_kueche_preview.jpg" alt="Ferienwohnung Kueche">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group4" rel="Ferienwohnung-4" title="Wohnzimmer" href="img/Wohnung4/w4_wohnzimmer_Bett_Sessel_big.jpg">
-                                <img src="img/Wohnung4/w4_wohnzimmer_Bett_Sessel_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung4/w4_wohnzimmer_Bett_Sessel_small.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group4" rel="Ferienwohnung-4" title="Bad" href="img/Wohnung4/w4_bad_2.jpg">
-                                <img src="img/Wohnung4/w4_bad_2_preview.jpg" alt="Ferienwohnung Bad"></a>
+                                    <img src="img/Wohnung4/w4_bad_2_preview.jpg" alt="Ferienwohnung Bad">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group4" rel="Ferienwohnung-4" title="Bad" href="img/Wohnung4/w4_bad.jpg">
@@ -656,39 +674,48 @@
                         <ul class="slides">
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="Wohnzimmer" href="img/Wohnung5/w5_wohnzimmer1_big.jpg">
-                                <img src="img/Wohnung5/w5_wohnzimmer1_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung5/w5_wohnzimmer1_small.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="Wohnzimmer" href="img/Wohnung5/w5_wohnzimmer2_big.jpg">
-                                <img src="img/Wohnung5/w5_wohnzimmer2_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung5/w5_wohnzimmer2_small.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="Bad" href="img/Wohnung5/w5_bad1_big.jpg">
-                                <img src="img/Wohnung5/w5_bad1_small.jpg" alt="Ferienwohnung Bad"></a>
+                                    <img src="img/Wohnung5/w5_bad1_small.jpg" alt="Ferienwohnung Bad">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="Bad" href="img/Wohnung5/w5_bad2_big.jpg">
-                                <img src="img/Wohnung5/w5_bad2_small.jpg" alt="Ferienwohnung Bad"></a>
+                                    <img src="img/Wohnung5/w5_bad2_small.jpg" alt="Ferienwohnung Bad">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="Küche" href="img/Wohnung5/w5_kueche_big.jpg">
-                                <img src="img/Wohnung5/w5_kueche_small.jpg" alt="Ferienwohnung Kueche"></a>
+                                    <img src="img/Wohnung5/w5_kueche_small.jpg" alt="Ferienwohnung Kueche">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="Wohnzimmer" href="img/Wohnung5/w5_wohnzimmer2_big.jpg">
-                                <img src="img/Wohnung5/w5_wohnzimmer2_small.jpg" alt="Ferienwohnung Wohnzimmer"></a>
+                                    <img src="img/Wohnung5/w5_wohnzimmer2_small.jpg" alt="Ferienwohnung Wohnzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="Schlafzimmer" href="img/Wohnung5/w5_schlafzimmer1_big.jpg">
-                                <img src="img/Wohnung5/w5_schlafzimmer1_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
+                                    <img src="img/Wohnung5/w5_schlafzimmer1_small.jpg" alt="Ferienwohnung Schlafzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="wohnung5" href="img/Wohnung5/w5_schlafzimmer2_big.jpg">
-                                <img src="img/Wohnung5/w5_schlafzimmer2_small.jpg" alt="Ferienwohnung Schlafzimmer"></a>
+                                    <img src="img/Wohnung5/w5_schlafzimmer2_small.jpg" alt="Ferienwohnung Schlafzimmer">
+                                </a>
                             </li>
                             <li>
                                 <a data-fancy="group5" rel="Ferienwohnung-5" title="wohnung5" href="img/Wohnung5/w5_eingang_big.jpg">
-                                <img src="img/Wohnung5/w5_eingang_small.jpg" alt="Ferienwohnung Eingang"></a>
+                                    <img src="img/Wohnung5/w5_eingang_small.jpg" alt="Ferienwohnung Eingang">
+                                </a>
                             </li>
 
                         </ul>
@@ -835,7 +862,7 @@
         </div>
     </div> <!-- END CONTENTWRAPPER-->
 
-    <div class="row container-links">
+    <div class="container container-links">
         <div class="col-sm-offset-1">
             <div class="row">
                 <div class="row col-xs-12 col-sm-6">
@@ -1057,19 +1084,19 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>
+    <!-- build:js  -->
     <script type="text/javascript" src="vendor/moment/min/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="vendor/fancybox/source/jquery.fancybox.js"></script>
     <script type="text/javascript" src="vendor/flexslider/jquery.flexslider-min.js"></script>
-    <!-- TODO: js und css files entfernen -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js" integrity="sha256-dHf/YjH1A4tewEsKUSmNnV05DDbfGN3g7NMq86xgGh8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script  type="text/javascript" src="js/contact.js"></script>
+    <script type="text/javascript" src="js/contact.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <!-- endbuild -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB34262Bwrn0lD4Hcifwrf1bI2n6oudlVU&callback=initMap">
     </script>
-
 </body>
 </html>
