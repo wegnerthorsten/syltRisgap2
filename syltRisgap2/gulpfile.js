@@ -7,7 +7,7 @@ var ftp = require('vinyl-ftp');
 var gutil = require('gulp-util');
 var map = require('map-stream'); // use reporter
 var jshint = require('gulp-jshint'); // validate js
-plugins.concatreplace = require('gulp-concat-replace'); // replace reference, concatinate css and js filess
+var concatreplace = require('gulp-concat-replace'); // replace reference, concatinate css and js filess
 var csslint = require('gulp-csslint'); // validate css
 var pipeline = require('readable-stream').pipeline;
 var uglify = require('gulp-uglify'); // min js
@@ -34,8 +34,8 @@ var remoteFolder = '';
 
 /*###### Introduction #######*/
 /* Die Ordner Struktur besteht aus src, dev und dist. Die src ist der Quelle Ordner zum local entwickeln, 
- * Initialisieren der Application, führe alle copy-... src -> dev aus, erstellt die dev Ordner Struktur, kopiert  alle files und Bilder in den dev    
- * Bower, kopiert alle benötigen Files in das vendor Verzeichnis
+ * Initialisieren der Application, fï¿½hre alle copy-... src -> dev aus, erstellt die dev Ordner Struktur, kopiert  alle files und Bilder in den dev    
+ * Bower, kopiert alle benï¿½tigen Files in das vendor Verzeichnis
  * Copy dev -> dist erstellt die dev ordner Strukturen und kopiert alle files aus dem dev -> dist
  * Copy bower components, kopiert alle libraries,fonts etc. ins vendor Verzeichnis
  * Watch-srcToDev starten, wenn eines der Files bearbeitet worden sind, kopiert watch das File von src -> dev 
@@ -95,7 +95,7 @@ gulp.task('clean:local-dev', function () {
 //});
 
 // kopiert alle bower componenten in den vendor ordner
-// bower install lädt alle componenten aus der bower.json 
+// bower install lï¿½dt alle componenten aus der bower.json 
 gulp.task('copy:bower_components', function () {
     return gulp.src([
         'bower_components/flexslider/flexslider.css',
@@ -264,7 +264,7 @@ function getFtpConnection() {
 }
 
 /******* FTP UPLOAD *******/
-// lädt die dist auf dem Server dist Ordner
+// lï¿½dt die dist auf dem Server dist Ordner
 gulp.task('upload:dev-to-ftp-dev', function () {
 
     var conn = getFtpConnection();
@@ -325,17 +325,18 @@ gulp.task('build:minify-css', () => {
 });
 
 gulp.task('build:html', function () {
+   
     gulp.src('dist/index.html')
-        .pipe(plugins.concatreplace({
+        .pipe(concatreplace({
             prefix: "min.all",      // file renaming
             replaceFileName:"main", // file renaming
             base: "../",    //Wenn der Seitenimportpfad mit "/" beginnt, entspricht er dem Verzeichnis gulpfile.js, der Standardeinstellung "../".
-            output: {   // pfad fürs css und js
-                css: "/build/css",
-                js: "/build/js"
+            output: {   // pfad fÃ¼rs css und js
+                css: "dist/css",
+                js: "dist/js"
             }
         }))
-        .pipe(gulp.dest('build/')); //  Pfad für index.html
+        .pipe(gulp.dest('dist/')); //  Pfad fÃ¼r index.html
 
   //  del.sync(['dist/css/main.css', 'dist/js/main.js', 'dist/js/validation.js', 'dist/js/contact.js', 'dist/css/svg.css']);    
 });
@@ -358,7 +359,7 @@ gulp.task('build:validator-css', function () {
 gulp.task('build:copy-files', function () {
     console.log('test ' + dirs.dist);
     return gulp.src([dirs.dev + '/**', '!dev/css/**', '!dev/js/**'])
-        .pipe(gulp.dest(dirs.dist));
+        .pipe(gulp.dest('dist/'));
 });
 
 /** Helper **/ 

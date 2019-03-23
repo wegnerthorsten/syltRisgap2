@@ -1,9 +1,9 @@
 {
   "name": "risgap2",
-  "description": "new Website from Risgap Hüs",
+  "description": "Website Risgap Hüs",
   "main": "index.html",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "www.sylt-risgap2.de",
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
