@@ -123,14 +123,12 @@ gulp.task('copy:bower_components', function () {
 gulp.task('copy:bower_components_fonts', function () {
     return gulp.src([
         'bower_components/bootstrap-sass/assets/fonts/bootstrap/**'])
-        .pipe(rename({ dirname: '' }))
         .pipe(gulp.dest(dirs.localpath + '/vendor/fonts'));
 });
 
 gulp.task('copy:bower_components-flexslider-fonts', function () {
     return gulp.src([
         'bower_components/flexslider/fonts/**'])
-        .pipe(rename({ dirname: '' }))
         .pipe(gulp.dest(dirs.localpath + '/vendor/flexslider/fonts'));
 });
 
