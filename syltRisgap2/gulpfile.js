@@ -33,8 +33,14 @@ var remoteFolder = '';
 
 
 /*###### Introduction #######*/
+/**
+ * starte -> watch:start-environment-dev; Änderungen im src Folder werden ins dev kopiert, 
+ * von dort auf den FTP Server auf in den dev folder. Die Files müssen manuel in die live Umgebung 
+ * kopiert werden.
+ 
+
 /* Die Ordner Struktur besteht aus src, dev und dist. Die src ist der Quelle Ordner zum local entwickeln, 
- * Initialisieren der Application, f�hre alle copy-... src -> dev aus, erstellt die dev Ordner Struktur, kopiert  alle files und Bilder in den dev    
+ * Initialisieren der Application, f�hre alle copy-... src -> dev aus, erstellt die dev Ordner Struktur, kopiert alle files und Bilder in den dev    
  * Bower, kopiert alle ben�tigen Files in das vendor Verzeichnis
  * Copy dev -> dist erstellt die dev ordner Strukturen und kopiert alle files aus dem dev -> dist
  * Copy bower components, kopiert alle libraries,fonts etc. ins vendor Verzeichnis
@@ -52,24 +58,6 @@ var gulpSrc = function (opts) {
 
     return es.duplex(paths, files);
 };
-
-/*** DEFAULT TASK ***/
-gulp.task('default', ['clean:local-dev'], function () {
-    gulp.start(
-        'clean:local-dev',
-        'copy:index.html',
-        'copy:img',
-        'copy:fonts',
-        'copy:css',
-        'copy:js',
-        'copy:php',
-        'copy:sitemap.xml',
-        'copy:bower_components',
-        'copy:bower_components_fonts',
-        'copy:bower_components-flexslider-fonts');
-});
-
-
 
 // #### COPY FILES #####
 
@@ -218,14 +206,12 @@ gulp.task('watch:srcToDev', function () {
     // Create LiveReload server
     livereload.listen();
 
-    gulp.watch(dirs.src + '/css/*.css', ['livereload:styles']);
-    gulp.watch(dirs.src + '/*.xml', ['livereload:sitemap']);
-    gulp.watch(dirs.src + '/php/*', ['livereload:php']);
-    gulp.watch(dirs.src + '/*.html', ['livereload:index.html']);
-    gulp.watch(dirs.src + '/js/*.js', ['livereload:scripts']);
+    gulp.watch(dirs.src + '/css/*.css', gulp.series('livereload:styles'));
+    gulp.watch(dirs.src + '/*.xml', gulp.series('livereload:sitemap'));
+    gulp.watch(dirs.src + '/php/*', gulp.series('livereload:php'));
+    gulp.watch(dirs.src + '/*.html', gulp.series('livereload:index.html'));
+    gulp.watch(dirs.src + '/js/*.js', gulp.series('livereload:scripts'));
     console.log('Watch src -> dev changed detected! copy file from src to dev');
-
-
 });
 
 /**
@@ -239,11 +225,11 @@ gulp.task('watch:ftp-deploy-dev', function () {
     var conn = getFtpConnection();
 
     gulp.watch(localFilesGlob)
-        .on('change', function (event) {
-            console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
+        .on('change', function (file) {
+            console.log('Changes detected! Uploading file "' + file );
 
             return gulp
-                .src([event.path], { base: '.', buffer: false })
+                .src([file], { base: '.', buffer: false })
                 .pipe(conn.newer(remoteFolder)) // only upload newer files
                 .pipe(conn.dest(remoteFolder));
         });
@@ -293,13 +279,6 @@ gulp.task('ftp-deploy', function () {
 });
 
 /***** Build Process *****/
-gulp.task('build:start-process', ['build:clean-dist-local', 'build:minify-js', 'build:minify-css'], function () {
-    gulp.start(
-        'build:html',
-        'build:validator-js',
-        'build:validator-css',
-        'build:copy-files');
-});
 
 gulp.task('build:clean-dist-local', function () {
     return del([dirs.dist + '/*']);
@@ -373,4 +352,30 @@ var myReporter = map(function (file, cb) {
     }
     cb(null, file);
 });
+ 
+
+/*** SERIES TASK ***/
+gulp.task('build:start-process', gulp.series('build:clean-dist-local', 'build:minify-js', 'build:minify-css', function () {
+    gulp.start(
+        'build:html',
+        'build:validator-js',
+        'build:validator-css',
+        'build:copy-files');
+})); 
+
+gulp.task('default', gulp.series('clean:local-dev'  , function () {
+    gulp.start(
+        'clean:local-dev',
+        'copy:index.html',
+        'copy:img',
+        'copy:fonts',
+        'copy:css',
+        'copy:js',
+        'copy:php',
+        'copy:sitemap.xml',
+        'copy:bower_components',
+        'copy:bower_components_fonts',
+        'copy:bower_components-flexslider-fonts');
+}));
+
 
