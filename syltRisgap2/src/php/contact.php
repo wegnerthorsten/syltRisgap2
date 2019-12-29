@@ -17,7 +17,16 @@ $subject = 'Anfrage Ferienwohnung';
 
 // form field names and their translations.
 // array variable name => Text to appear in the email
-$fields = array('fist-name' => 'Vorname', 'last-name' => 'Nachname', 'need' => 'Need', 'phone' => 'Telefonnr.', 'email' => 'Email', 'message' => 'Nachricht'); 
+$fields = array(
+	'from-date' => 'Anreise', 
+	'thru-date' => 'Abreise', 
+	'person-counter' => 'Anzahl Person', 
+	'room-nr' => 'Wohnung Nr', 
+	'last-name' => 'Nachname', 
+	'need' => 'Need', 
+	'phone' => 'Telefonnr.', 
+	'email' => 'Email', 
+	'message' => 'Nachricht'); 
 
 // message that will be displayed when everything is OK :)
 $okMessage = 'Danke, Ihre Anfrage ist erfolgreich gesendet, Sie erhalten schnellsten eine Antwort.';
@@ -67,11 +76,11 @@ $validator = new Validator;
 
 			foreach ($_POST as $key => $value) {
 				// If the field exists in the $fields array, include it in the email 
-				if (isset($fields[$key])) {
-					$emailText .= "$fields[$key]: $value\n";
+					if (isset($fields[$key])) {
+					$emailText .= "$fields[$key]: $value\n";					
 				}
-			}
-
+			}  
+			 
 			// All the neccessary headers for the email.
 			$headers = array('Content-Type: text/plain; charset="UTF-8";',
 				'From: ' . $from,

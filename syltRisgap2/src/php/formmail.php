@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$headers .= "Content-Type: text/html; charset=UTF-8"; 
 	 
 	ValidateForm($firstName, $name, $emailFrom, $mailTo, $errorMsg, $error); 
-	  
+	
 	if($error == false)
 {
 		$msg = SetInquiryForm($_POST, $firstName, $name,$emailFrom, $phone);
